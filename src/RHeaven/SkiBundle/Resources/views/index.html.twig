@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Bienvenue sur le site du ski !!!!</h1>
+	<ul>
+		<li><a href="{{ path('fos_user_registration_register') }}">Je ne me suis jamais inscrit</a></li>
+		<li><a href="{{ path('fos_user_security_login') }}">J'ai déjà une inscription</a></li>
+	</ul>
+{% endblock %}

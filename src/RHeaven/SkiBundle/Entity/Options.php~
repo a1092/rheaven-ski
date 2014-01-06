@@ -1,0 +1,89 @@
+<?php
+
+namespace RHeaven\SkiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Options
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="RHeaven\SkiBundle\Entity\OptionsRepository")
+ */
+class Options
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+	/**
+	* @ORM\OneToOne(targetEntity="RHeaven\UserBundle\Entity\User")
+	* @ORM\JoinColumn(nullable=false)
+	*/
+	private $user;
+	
+	/**
+	* @ORM\ManyToOne(targetEntity="RHeaven\SkiBundle\Entity\Materiel")
+	* @ORM\JoinColumn(nullable=false)
+	*/
+	private $materiel;
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="assurance_materiel", type="boolean", nullable=false)
+     */
+    private $assurance_materiel;
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="assurance_neige", type="boolean", nullable=false)
+     */
+    private $assurance_neige;
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="assurance_voyage", type="boolean", nullable=false)
+     */
+    private $assurance_voyage;
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="assurance_risque", type="boolean", nullable=false)
+     */
+    private $assurance_risque;
+	
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="option_kelly", type="boolean", nullable=false)
+     */
+    private $option_kelly;
+
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="option_food", type="boolean", nullable=false)
+     */
+    private $option_food;
+	
+	
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

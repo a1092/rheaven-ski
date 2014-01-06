@@ -1,0 +1,113 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>User list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Usernamecanonical</th>
+                <th>Email</th>
+                <th>Emailcanonical</th>
+                <th>Enabled</th>
+                <th>Salt</th>
+                <th>Password</th>
+                <th>Lastlogin</th>
+                <th>Locked</th>
+                <th>Expired</th>
+                <th>Expiresat</th>
+                <th>Confirmationtoken</th>
+                <th>Passwordrequestedat</th>
+                <th>Roles</th>
+                <th>Credentialsexpired</th>
+                <th>Credentialsexpireat</th>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Promo</th>
+                <th>Birthdate</th>
+                <th>Address</th>
+                <th>Postalcode</th>
+                <th>City</th>
+                <th>Phone</th>
+                <th>Sante_probleme</th>
+                <th>Sante_traitement</th>
+                <th>Ss_no</th>
+                <th>Urgence_nom1</th>
+                <th>Urgence_prenom1</th>
+                <th>Urgence_statut1</th>
+                <th>Urgence_tel1</th>
+                <th>Urgence_nom2</th>
+                <th>Urgence_prenom2</th>
+                <th>Urgence_statut2</th>
+                <th>Urgence_tel2</th>
+                <th>Taille</th>
+                <th>Poids</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+                <td>{{ entity.usernameCanonical }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.emailCanonical }}</td>
+                <td>{{ entity.enabled }}</td>
+                <td>{{ entity.salt }}</td>
+                <td>{{ entity.password }}</td>
+                <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.locked }}</td>
+                <td>{{ entity.expired }}</td>
+                <td>{% if entity.expiresAt %}{{ entity.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.confirmationToken }}</td>
+                <td>{% if entity.passwordRequestedAt %}{{ entity.passwordRequestedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.roles }}</td>
+                <td>{{ entity.credentialsExpired }}</td>
+                <td>{% if entity.credentialsExpireAt %}{{ entity.credentialsExpireAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.firstname }}</td>
+                <td>{{ entity.lastname }}</td>
+                <td>{{ entity.promo }}</td>
+                <td>{% if entity.birthdate %}{{ entity.birthdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.address }}</td>
+                <td>{{ entity.postalcode }}</td>
+                <td>{{ entity.city }}</td>
+                <td>{{ entity.phone }}</td>
+                <td>{{ entity.santeprobleme }}</td>
+                <td>{{ entity.santetraitement }}</td>
+                <td>{{ entity.ssno }}</td>
+                <td>{{ entity.urgencenom1 }}</td>
+                <td>{{ entity.urgenceprenom1 }}</td>
+                <td>{{ entity.urgencestatut1 }}</td>
+                <td>{{ entity.urgencetel1 }}</td>
+                <td>{{ entity.urgencenom2 }}</td>
+                <td>{{ entity.urgenceprenom2 }}</td>
+                <td>{{ entity.urgencestatut2 }}</td>
+                <td>{{ entity.urgencetel2 }}</td>
+                <td>{{ entity.taille }}</td>
+                <td>{{ entity.poids }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('user_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('user_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('user_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

@@ -1,0 +1,30 @@
+materiel:
+    pattern:  /
+    defaults: { _controller: "RHeavenSkiBundle:Materiel:index" }
+
+materiel_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "RHeavenSkiBundle:Materiel:show" }
+
+materiel_new:
+    pattern:  /new
+    defaults: { _controller: "RHeavenSkiBundle:Materiel:new" }
+
+materiel_create:
+    pattern:  /create
+    defaults: { _controller: "RHeavenSkiBundle:Materiel:create" }
+    requirements: { _method: post }
+
+materiel_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "RHeavenSkiBundle:Materiel:edit" }
+
+materiel_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "RHeavenSkiBundle:Materiel:update" }
+    requirements: { _method: post|put }
+
+materiel_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "RHeavenSkiBundle:Materiel:delete" }
+    requirements: { _method: post|delete }

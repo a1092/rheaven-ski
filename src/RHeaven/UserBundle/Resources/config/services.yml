@@ -1,0 +1,13 @@
+parameters:
+#    r_heaven_user.example.class: RHeaven\UserBundle\Example
+
+services:
+#    r_heaven_user.example:
+#        class: %r_heaven_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    r_heaven_user.registration.form.type:
+        class: RHeaven\UserBundle\Form\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: rheaven_userbundle_user_registration }

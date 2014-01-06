@@ -1,0 +1,7 @@
+r_heaven_user_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: RHeavenUserBundle:Default:index }
+
+RHeavenUserBundle_user:
+    resource: "@RHeavenUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user

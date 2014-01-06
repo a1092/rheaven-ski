@@ -1,0 +1,30 @@
+user:
+    pattern:  /
+    defaults: { _controller: "RHeavenUserBundle:User:index" }
+
+user_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "RHeavenUserBundle:User:show" }
+
+user_new:
+    pattern:  /new
+    defaults: { _controller: "RHeavenUserBundle:User:new" }
+
+user_create:
+    pattern:  /create
+    defaults: { _controller: "RHeavenUserBundle:User:create" }
+    requirements: { _method: post }
+
+user_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "RHeavenUserBundle:User:edit" }
+
+user_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "RHeavenUserBundle:User:update" }
+    requirements: { _method: post|put }
+
+user_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "RHeavenUserBundle:User:delete" }
+    requirements: { _method: post|delete }

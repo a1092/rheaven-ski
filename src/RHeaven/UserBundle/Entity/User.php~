@@ -1,0 +1,150 @@
+<?php
+
+namespace RHeaven\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="RHeaven\UserBundle\Entity\UserRepository")
+ */
+class User extends BaseUser
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+	
+	/**
+	* @ORM\Column(name="firstname", type="string", length=200)
+	*/
+	private $firstname;
+
+	/**
+	* @ORM\Column(name="lastname", type="string", length=200)
+	*/
+	private $lastname;
+	
+	/**
+	* @ORM\Column(name="promo", type="string", length=10)
+	*/
+	private $promo;
+
+	/**
+	* @ORM\Column(name="birthdate", type="datetime")
+	*/
+	private $birthdate;
+
+	/**
+	* @ORM\Column(name="address", type="string", length=255)
+	*/
+	private $address;
+
+
+	/**
+	* @ORM\Column(name="postalcode", type="string", length=4)
+	*/
+	private $postalcode;
+	
+	/**
+	* @ORM\Column(name="city", type="string", length=200)
+	*/
+	private $city;
+	
+	/**
+	* @ORM\Column(name="phone", type="string", length=20)
+	*/
+	private $phone;
+	
+	/**
+	* @ORM\Column(name="sante_probleme", type="string", length=255)
+	*/
+	private $sante_probleme;
+
+
+
+	/**
+	* @ORM\Column(name="sante_traitement", type="string", length=255)
+	*/
+	private $sante_traitement;
+	
+	/**
+	* @ORM\Column(name="ss_no", type="string", length=100)
+	*/
+	private $ss_no;
+	
+	
+	/**
+	* @ORM\Column(name="urgence_nom1", type="string", length=200)
+	*/
+	private $urgence_nom1;
+
+	/**
+	* @ORM\Column(name="urgence_prenom1", type="string", length=200)
+	*/
+	private $urgence_prenom1;
+
+	/**
+	* @ORM\Column(name="urgence_statut1", type="string", length=100)
+	*/
+	private $urgence_statut1;
+
+	/**
+	* @ORM\Column(name="urgence_tel1", type="string", length=20)
+	*/
+	private $urgence_tel1;
+	
+	
+	
+	
+	/**
+	* @ORM\Column(name="urgence_nom2", type="string", length=200)
+	*/
+	private $urgence_nom2;
+
+	/**
+	* @ORM\Column(name="urgence_prenom2", type="string", length=200)
+	*/
+	private $urgence_prenom2;
+
+	/**
+	* @ORM\Column(name="urgence_statut2", type="string", length=100)
+	*/
+	private $urgence_statut2;
+
+	/**
+	* @ORM\Column(name="urgence_tel2", type="string", length=20)
+	*/
+	private $urgence_tel2;
+	
+	
+	
+	/**
+	* @ORM\Column(name="taille", type="integer", length=3)
+	*/
+	private $taille;
+	
+	/**
+	* @ORM\Column(name="poids", type="integer", length=3)
+	*/
+	private $poids;
+	
+	
+	
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

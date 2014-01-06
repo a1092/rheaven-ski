@@ -1,0 +1,7 @@
+parameters:
+#    r_heaven_ski.example.class: RHeaven\SkiBundle\Example
+
+services:
+#    r_heaven_ski.example:
+#        class: %r_heaven_ski.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

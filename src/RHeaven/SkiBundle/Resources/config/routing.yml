@@ -1,0 +1,24 @@
+r_heaven_ski_index:
+    pattern:  /
+    defaults: { _controller: RHeavenSkiBundle:Default:index }
+
+
+r_heaven_ski_homepage:
+    pattern:  /ski
+    defaults: { _controller: RHeavenSkiBundle:Default:home }
+
+RHeavenSkiBundle_materiel:
+    resource: "@RHeavenSkiBundle/Resources/config/routing/materiel.yml"
+    prefix:   /materiel
+
+r_heaven_ski_person:
+    pattern:  /ski/person
+    defaults: { _controller: RHeavenSkiBundle:Default:person }
+
+r_heaven_ski_options:
+    pattern:  /ski/options
+    defaults: { _controller: RHeavenSkiBundle:Default:options }
+
+r_heaven_ski_paiement:
+    pattern:  /ski/paiement
+    defaults: { _controller: RHeavenSkiBundle:Default:paiement }

@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Les options du ski !</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('r_heaven_ski_homepage') }}">
+            Retourner à la fiche
+        </a>
+    </li>
+</ul>
+{% endblock %}
