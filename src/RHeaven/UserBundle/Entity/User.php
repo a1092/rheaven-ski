@@ -137,7 +137,7 @@ class User extends BaseUser
 	private $poids;
 	
 	/**
-	* @ORM\Column(name="statut", type="string", length=200)
+	* @ORM\Column(name="statut", type="string", length=200, nullable=true)
 	*/
 	private $statut;
 	
