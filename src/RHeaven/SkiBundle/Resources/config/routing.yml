@@ -22,3 +22,7 @@ r_heaven_ski_options:
 r_heaven_ski_paiement:
     pattern:  /ski/paiement
     defaults: { _controller: RHeavenSkiBundle:Default:paiement }
+
+r_heaven_ski_print_pdf:
+    pattern:  /ski/print/pdf
+    defaults: { _controller: RHeavenSkiBundle:Default:pdf }

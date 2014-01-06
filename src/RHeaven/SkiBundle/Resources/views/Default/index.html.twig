@@ -10,7 +10,7 @@
 <table>
 	<tr>
 		<td>Nom : </td>
-		<td>{{ app.user.lastname }}</td>
+		<td>{{ app.user.lastname|upper }}</td>
 	</tr>
 	<tr>
 		<td>Prénom : </td>
@@ -125,7 +125,7 @@
 
 <h2>Récapitulatif du voyage</h2>
 
-{% if total is not null %}
+{% if options is not empty and paiement is not empty  %}
 <table>
 	<tr>
 		<td>Base du voyage : </td>
@@ -179,7 +179,7 @@
 	</tr>
 </table>
 
-{% if paiement.modalites == 1 %}}
+{% if paiement.modalites == 1 %}
 <p> Le paiement est à effectuer en une seule fois par {{ paiement.mode }} dès l'inscription. </p>
 {% else %} 
 <p> Le paiement est à effectuer en deux fois par {{ paiement.mode|lower }} : </p>
@@ -190,11 +190,11 @@
 {% endif %}
 
 {% if paiement.mode == 'Chèque' %}
-	<p> L'ordre du chèque doit être fait à "BdE Efrei".</p>
+	<p>Le chèque doit être fait à l'ordre de "BdE Efrei".</p>
 {% endif %}
 
 
-	<h3> Document à fournir </h3>
+	<h3> Documents à fournir </h3>
 	<ul>
 		<li>Ton dossier d'inscription imprimé</li>
 		<li>Ton paiement</li>
@@ -207,7 +207,7 @@
 	<h3>Imprimer mon dossier</h3>
 	<p> <input type="checkbox" /> J'accepte le réglement dans son intégralité disponible <a href="">à cette adresse</a>.</p>
 
-	<button>Imprimer mon dossier en PDF</button>
+	<a href="{{ path('r_heaven_ski_print_pdf') }}">Imprimer mon dossier en PDF</a>
 {% else %}
 <p>Dossier incomplet</p>
 {% endif %}

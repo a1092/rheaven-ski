@@ -136,6 +136,11 @@ class User extends BaseUser
 	*/
 	private $poids;
 	
+	/**
+	* @ORM\Column(name="statut", type="string", length=200)
+	*/
+	private $statut;
+	
 	
 	
     /**
@@ -635,5 +640,28 @@ class User extends BaseUser
     public function getPoids()
     {
         return $this->poids;
+    }
+
+    /**
+     * Set statut
+     *
+     * @param string $statut
+     * @return User
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return string 
+     */
+    public function getStatut()
+    {
+        return $this->statut;
     }
 }

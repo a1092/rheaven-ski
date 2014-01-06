@@ -75,3 +75,8 @@ fos_user:
     registration:
         form:
             type: rheaven_userbundle_user_registration
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     D:/wkhtmltopdf/wkhtmltopdf.exe

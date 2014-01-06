@@ -2,6 +2,7 @@
 
 namespace RHeaven\SkiBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use RHeaven\SkiBundle\Entity\Options;
@@ -36,6 +37,37 @@ class DefaultController extends Controller
 			'total' => $total,
 		));
     }
+	
+	public function pdfAction() {
+		
+		$em = $this->getDoctrine()->getManager();
+		$user = $this->get('security.context')->getToken()->getUser();
+		
+        $options = $em->getRepository('RHeavenSkiBundle:Options')->findOneByUser($user->getId());
+		$paiement = $em->getRepository('RHeavenSkiBundle:Paiement')->findOneByUser($user->getId());
+		
+		
+		if(!empty($options))
+			$total = 460+$options->total();
+		else
+			$total = null;
+		
+		$html = $this->renderView('RHeavenSkiBundle:Default:pdf.html.twig', array(
+				'options' => $options,
+				'paiement' => $paiement,
+				'total' => $total,
+		));
+
+		return new Response(
+			$this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+			200,
+			array(
+				'Content-Type'          => 'application/pdf',
+				'Content-Disposition'   => 'attachment; filename="file.pdf"'
+			)
+		);
+		
+	}
 	
 	public function personAction(Request $request) {
 		
