@@ -31,7 +31,7 @@ class DefaultController extends Controller
 		else
 			$total = null;
 		
-        return $this->render('RHeavenSkiBundle:Default:index.html.twig', array(
+        return $this->render('RHeavenSkiBundle::home.html.twig', array(
 			'options' => $options,
 			'paiement' => $paiement,
 			'total' => $total,
@@ -52,7 +52,7 @@ class DefaultController extends Controller
 		else
 			$total = null;
 		
-		$html = $this->renderView('RHeavenSkiBundle:Default:pdf.html.twig', array(
+		$html = $this->renderView('RHeavenSkiBundle::pdf.html.twig', array(
 				'options' => $options,
 				'paiement' => $paiement,
 				'total' => $total,

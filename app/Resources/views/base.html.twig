@@ -1,13 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html class="no-js" lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ asset('css/foundation.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    {% block stylesheets %}{% endblock %}
+    <script src="{{ asset('js/modernizr.js') }}"></script>
+    <title>{% block title %}R-Heaven - Voyage au ski 2014{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+    <div class="row">
+        <div class="large-3 large-centered columns">
+            <a href="index.html"><img src="{{ asset('img/logo.png') }}" alt="R-Heaven - Voyage au ski" class="logo" /></a>
+        </div>
+    </div>
+    {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/foundation.min.js') }}"></script>
+    <script>$(document).foundation();</script>
+</body>
 </html>
