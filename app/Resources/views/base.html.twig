@@ -10,13 +10,25 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
+    <header class="row">
+        <a href=""><img src="{{ asset('img/header-ski.png') }}" alt="R-Heaven - Voyage au ski" /></a>
+    </header>
+
+    {% block body %}{% endblock %}
+
+    {% block javascripts %}{% endblock %}
+
     <div class="row">
-        <div class="large-3 large-centered columns">
-            <a href="index.html"><img src="{{ asset('img/logo.png') }}" alt="R-Heaven - Voyage au ski" class="logo" /></a>
+        <div class="large-12 collums">
+        <p class="text-center">
+            <em>&copy; 2014 R-Heaven BDE Efrei - Tous droits réservés</em><br />
+            <small>Development by Alexandre Wizel (P2015) / Design by <a href="http://www.ludovicmuncherji.fr/">Ludovic Muncherji</a> (P2015)</small>
+        </p>
+        <p class="text-center">
+            <a href="http://www.efrei.fr/"><img src="{{ asset('img/efrei.png') }}" alt="Efrei" /></a>
+        </p>
         </div>
     </div>
-    {% block body %}{% endblock %}
-    {% block javascripts %}{% endblock %}
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/foundation.min.js') }}"></script>

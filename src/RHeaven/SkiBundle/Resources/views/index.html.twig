@@ -2,7 +2,7 @@
 
 {% block body -%}
     <div class="row">
-      	<div class="large-8 columns">
+      	<div class="large-7 columns">
       		<div class="row">
       			<div class="panel">
 			        <h3>Tignes en quelques mots</h3>
@@ -11,61 +11,65 @@
 			        <p>En plus de ces pistes, poussez vos spatules un peu plus loin profitez également de 6 stades de slalom, 1 stade de bosses, 2 snowpark, 1 gliss'park.</p>
 			        <p>Tignes accueille tout l'hiver des événements originaux, où les performances sportives se mêlent au goût de l'audace à l'image des Winter X Games Europe, l'événement incontournable du ski et du snowboard freestyle !</p>
 			        <p class="text-center"><a href="http://www.tignes.net">En savoir plus sur le site officiel</a></p>
-					<div class="flex-video">
-        				<iframe width="280" height="156" src="//www.youtube.com/embed/V7bdF5W6Odg" frameborder="0" allowfullscreen></iframe>
-					</div>
+			        <h3>Quelques photos</h3>
+					<ul class="clearing-thumbs" data-clearing>
+						<li><a href="{{ asset('img/slides/1.jpg') }}" class="th"><img src="{{ asset('img/slides/1-th.jpg') }}"></a></li>
+						<li><a href="{{ asset('img/slides/2.jpg') }}" class="th"><img src="{{ asset('img/slides/2-th.jpg') }}"></a></li>
+						<li><a href="{{ asset('img/slides/3.jpg') }}" class="th"><img src="{{ asset('img/slides/3-th.jpg') }}"></a></li>
+						<li><a href="{{ asset('img/slides/4.jpg') }}" class="th"><img src="{{ asset('img/slides/4-th.jpg') }}"></a></li>
+						<li><a href="{{ asset('img/slides/5.jpg') }}" class="th"><img src="{{ asset('img/slides/5-th.jpg') }}"></a></li>
+						<li><a href="{{ asset('img/slides/6.jpg') }}" class="th"><img src="{{ asset('img/slides/6-th.jpg') }}"></a></li>
+						<li><a href="{{ asset('img/slides/7.jpg') }}" class="th"><img src="{{ asset('img/slides/7-th.jpg') }}"></a></li>
+						<li><a href="{{ asset('img/slides/8.jpg') }}" class="th"><img src="{{ asset('img/slides/8-th.jpg') }}"></a></li>
+					</ul>
 		      	</div>
 		    </div>
 
-		    <div class="row">
-				<div class="panel">
-					<h3>Quelques photos</h3>
-					<ul class="clearing-thumbs" data-clearing>
-						<li><a href="img/slides/1.jpg"><img src="img/slides/1-th.jpg"></a></li>
-						<li><a href="img/slides/2.jpg"><img src="img/slides/2-th.jpg"></a></li>
-						<li><a href="img/slides/3.jpg"><img src="img/slides/3-th.jpg"></a></li>
-						<li><a href="img/slides/4.jpg"><img src="img/slides/4-th.jpg"></a></li>
-						<li><a href="img/slides/5.jpg"><img src="img/slides/5-th.jpg"></a></li>
-						<li><a href="img/slides/6.jpg"><img src="img/slides/6-th.jpg"></a></li>
-						<li><a href="img/slides/7.jpg"><img src="img/slides/7-th.jpg"></a></li>
-						<li><a href="img/slides/8.jpg"><img src="img/slides/8-th.jpg"></a></li>
-					</ul>		
+			<div class="row">
+				<div class="callout panel bg-rheaven">
+					<h3>Les avantages négociés par R-Heaven</h3>
+
+					<p>Comme à chaque événement qu'il organise, ton BDE te gâte ! Pour cette semaine de folie :</p>
+					<ul>
+						<li>De nombreuses réductions dans les bars, restaurants et supérettes.</li>
+						<li>Entrées gratuites toute la semaine dans les discothèques de Tigne.</li>
+						<li>Location d'un Airbag et d'un Boardercross avec des lots à gagner !</li>
+						<li>Accès à la piscine du Lagon et à la patinoire (patins à glace offerts)</li>
+						<li>... et d'autres activités surprises pendant la semaine !</li>
+					</ul>
 				</div>
 			</div>
+
 		</div>
 
-	    <div class="large-4 columns">
+	    <div class="large-4 offset-1 columns">
 	    	<div class="row">
 				<ul class="pricing-table">
 					<li class="title">Un voyage inoubliable</li>
 					<li class="price">520€</li>
-					<li class="bullet-item">Hébergement en résidence 3 étoiles au pied des pistes avec terrasse exposé plein Sud</li>
+					<li class="bullet-item">Hébergement en résidence 3 étoiles <em>Pierre et Vacances</em> au pied des pistes avec terrasse exposé plein Sud</li>
 					<li class="bullet-item">Forfait Tignes STGM</li>
 					<li class="bullet-item">A/R Paris-Tignes en car</li>
 					<li class="bullet-item">Matériel de ski gamme "sport"</li>
 					<li class="bullet-item">De nombreuses activités</li>
 					<li class="description"><a href="#" data-reveal-id="optionsSup">Voir les options supplémentaires</a></li>
 					<li class="cta-button"><a class="button" href="{{ path('fos_user_registration_register') }}">Réserver maintenant !</a></li>
+					<li class="cta-button"><a href="{{ path('fos_user_security_login') }}" class="button small secondary">Suivre mon dossier</a></li>
 				</ul>
 			</div>
 
-			<div class="row">
-				<div class="panel text-center">
-					<a href="{{ path('fos_user_security_login') }}" class="button success">Suivre mon dossier</a>
+		    <div class="row">
+				<div class="panel">
+					<div class="flex-video">
+        				<iframe width="280" height="158" src="//www.youtube.com/embed/V7bdF5W6Odg?rel=0" frameborder="0" allowfullscreen></iframe>
+					</div>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="callout panel">
-					<h3>Les avantages négociés par R-Heaven</h3>
-					<p>Comme à chaque événement qu'il organise, ton BDE te gâte ! Pour cette semaine de folie :</p>
-					<ul>
-						<li>De nombreuses réductions dans les bars, restaurants et supérettes.</li>
-						<li>Entrées gratuites toute la semaine dans les discothèques de Tigne.</li>
-						<li>Location d'un Airbag et d'un Boardercross avec des lots à gagner à la clé.</li>
-						<li>Accès à la piscine du Lagon et la patinoire (patins à glace offerts)</li>
-						<li>... et d'autres activités surprises pendant la semaine !</li>
-					</ul>
+				<div class="panel">
+					<h3>Des questions ?</h3>
+					<p>Passe nous voir au local quand tu veux, on en discute !<br />Ou alors contacte l'équipe organisatrice à <a href="mailto:voyage@r-heaven.fr">voyage@r-heaven.fr</a> ;)</p>
 				</div>
 			</div>
 		</div>
