@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use RHeaven\SkiBundle\Entity\Options;
 use RHeaven\SkiBundle\Entity\Paiement;
 use RHeaven\UserBundle\Entity\User as User;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 class DefaultController extends Controller
 {
@@ -72,15 +74,18 @@ class DefaultController extends Controller
 	
 	public function personAction(Request $request) {
 		
+				
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->get('security.context')->getToken()->getUser();
 				
+		if($user->getStatut() != "En cours")
+			throw new NotFoundHttpException("Dossier bloqué.");
 		
         $form = $this->createPersonForm($user);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            
+				
             $em->persist($user);
             $em->flush();
 
@@ -95,8 +100,12 @@ class DefaultController extends Controller
 	
 	public function optionsAction(Request $request) {
 		
+			
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->get('security.context')->getToken()->getUser();
+		
+		if($user->getStatut() != "En cours")
+				throw new NotFoundHttpException("Dossier bloqué.");
 		
         $options = $em->getRepository('RHeavenSkiBundle:Options')->findOneByUser($user->getId());
 
@@ -111,6 +120,8 @@ class DefaultController extends Controller
 
         if ($form->isValid()) {
             
+			
+				
             $em->persist($options);
             $em->flush();
 
@@ -124,10 +135,14 @@ class DefaultController extends Controller
 	}
 	
 	public function paiementAction(Request $request) {
-		
+
+				
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->get('security.context')->getToken()->getUser();
 		
+		if($user->getStatut() != "En cours")
+			throw new NotFoundHttpException("Dossier bloqué.");
+			
         $paiement = $em->getRepository('RHeavenSkiBundle:Paiement')->findOneByUser($user->getId());
 
         if (!$paiement) {
@@ -280,7 +295,6 @@ class DefaultController extends Controller
 				'multiple'  => false,
 				'required'    => true
 			))
-			->add('submit', 'submit')
 			->getForm()
         ;
     }
