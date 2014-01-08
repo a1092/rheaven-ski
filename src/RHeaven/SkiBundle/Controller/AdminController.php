@@ -94,7 +94,7 @@ class AdminController extends Controller
 			200,
 			array(
 				'Content-Type'          => 'application/pdf',
-				'Content-Disposition'   => 'attachment; filename="file.pdf"'
+				'Content-Disposition'   => 'attachment; filename="RHeaven_ski_P'.$user->getPromo().'_'.$user->getLastname()."_".$user->getFirstname().'.pdf"'
 			)
 		);
 	}

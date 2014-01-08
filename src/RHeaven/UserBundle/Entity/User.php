@@ -137,6 +137,11 @@ class User extends BaseUser
 	private $poids;
 	
 	/**
+	* @ORM\Column(name="chaussure", type="integer", length=2)
+	*/
+	private $chaussure;
+	
+	/**
 	* @ORM\Column(name="statut", type="string", length=200, nullable=true)
 	*/
 	private $statut;
@@ -719,5 +724,28 @@ class User extends BaseUser
     public function getOptions()
     {
         return $this->options;
+    }
+
+    /**
+     * Set chaussure
+     *
+     * @param integer $chaussure
+     * @return User
+     */
+    public function setChaussure($chaussure)
+    {
+        $this->chaussure = $chaussure;
+
+        return $this;
+    }
+
+    /**
+     * Get chaussure
+     *
+     * @return integer 
+     */
+    public function getChaussure()
+    {
+        return $this->chaussure;
     }
 }

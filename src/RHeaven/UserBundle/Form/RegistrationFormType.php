@@ -77,6 +77,28 @@ class RegistrationFormType extends BaseType
 				))
 				->add('taille')
 				->add('poids')
+				->add('chaussure', 'choice', array(
+					'choices'   => array(
+						''   => '',
+						'35' => '35',
+						'36' => '36',
+						'37' => '37',
+						'38' => '38',
+						'39' => '39',
+						'40' => '40',
+						'41' => '41',
+						'42' => '42',
+						'43' => '43',
+						'44' => '44',
+						'45' => '45',
+						'46' => '46',
+						'47' => '47',
+						'48' => '48',
+						'49' => '49',
+						'50' => '50',
+					),
+					'required'    => true
+				))
 				->add('statut', 'hidden', array(
 					'data' => 'En cours',
 					'required' => true,
