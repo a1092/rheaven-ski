@@ -1,15 +1,204 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Mes informations !</h1>
+<div class="row">
+	<div class="large-9 large-centered columns">
+		<div class="panel">
+			<ul class="breadcrumbs">
+				<li><a href="{{ path('r_heaven_ski_homepage') }}">&lt; Retourner à la fiche</a></li>
+			</ul>
+			
+			<h3>Modifier mes informations</h3>
 
-    {{ form(form) }}
+    		<form {{ form_enctype(form) }} method="POST">
+			    
+				{{ form_errors(form) }}
+				
+				<h4><small>Informations personnelles</small></h4>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('r_heaven_ski_homepage') }}">
-            Retourner à la fiche
-        </a>
-    </li>
-</ul>
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.firstname, "Prénom") }}
+				{{ form_errors(form.firstname) }}
+				{{ form_widget(form.firstname) }}
+				</div>
+				</div>
+				
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.lastname, "Nom") }}
+				{{ form_errors(form.lastname) }}
+				{{ form_widget(form.lastname) }}
+				</div>
+				</div>
+
+				
+				
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.promo, "Promotion") }}
+				{{ form_errors(form.promo) }}
+				{{ form_widget(form.promo) }}
+				</div>
+				</div>
+				
+				<div class="row collapse">
+				<div class="large-12 columns">
+				{{ form_label(form.birthdate, "Date de naissance") }}
+				{{ form_errors(form.birthdate) }}
+				{{ form_widget(form.birthdate) }}
+				</div>
+				</div>
+
+				<h4><small>Coordonnées</small></h4>
+
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.address, "Adresse") }}
+				{{ form_errors(form.address) }}
+				{{ form_widget(form.address) }}
+				</div>
+				</div>
+				
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.postalcode, "Code postal") }}
+				{{ form_errors(form.postalcode) }}
+				{{ form_widget(form.postalcode) }}
+				</div>
+				</div>
+				
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.city, "Ville") }}
+				{{ form_errors(form.city) }}
+				{{ form_widget(form.city) }}
+				</div>
+				</div>
+				
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.phone, "Téléphone") }}
+				{{ form_errors(form.phone) }}
+				{{ form_widget(form.phone) }}
+				</div>
+				</div>
+				
+				<h4><small>Santé</small></h4>
+
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.sante_probleme, "Problème(s) de santé (allergies, maladies, etc.)") }}
+				{{ form_errors(form.sante_probleme) }}
+				{{ form_widget(form.sante_probleme) }}
+				</div>
+				</div>
+				
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.sante_traitement, "Traitement") }}
+				{{ form_errors(form.sante_traitement) }}
+				{{ form_widget(form.sante_traitement) }}
+				</div>
+				</div>
+				
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.ss_no, "Numéro de Sécurité Sociale") }}
+				{{ form_errors(form.ss_no) }}
+				{{ form_widget(form.ss_no) }}
+				</div>
+				</div>
+
+				<h4><small>Personnes à contacter en cas d'urgence</small></h4>
+
+				<dl class="accordion" data-accordion>
+				  <dd>
+				    <a href="#panel1">Personne 1</a>
+				    <div id="panel1" class="content active">
+						<div class="row">
+							<div class="large-3 columns">
+								{{ form_label(form.urgence_nom1, "Nom") }}
+								{{ form_errors(form.urgence_nom1) }}
+								{{ form_widget(form.urgence_nom1) }}
+							</div>
+							<div class="large-3 columns">
+								{{ form_label(form.urgence_prenom1, "Prénom") }}
+								{{ form_errors(form.urgence_prenom1) }}
+								{{ form_widget(form.urgence_prenom1) }}
+							</div>
+							<div class="large-3 columns">
+								{{ form_label(form.urgence_statut1, "Statut") }}
+								{{ form_errors(form.urgence_statut1) }}
+								{{ form_widget(form.urgence_statut1) }}
+							</div>
+							<div class="large-3 columns">
+								{{ form_label(form.urgence_tel1, "Téléphone") }}
+								{{ form_errors(form.urgence_tel1) }}
+								{{ form_widget(form.urgence_tel1) }}
+							</div>
+						</div>
+				    </div>
+				  </dd>
+				  <dd>
+				    <a href="#panel2">Personne 2</a>
+				    <div id="panel2" class="content">
+						<div class="row">
+							<div class="large-3 columns">
+								{{ form_label(form.urgence_nom2, "Nom") }}
+								{{ form_errors(form.urgence_nom2) }}
+								{{ form_widget(form.urgence_nom2) }}
+							</div>
+							<div class="large-3 columns">
+								{{ form_label(form.urgence_prenom2, "Prénom") }}
+								{{ form_errors(form.urgence_prenom2) }}
+								{{ form_widget(form.urgence_prenom2) }}
+							</div>
+							<div class="large-3 columns">
+								{{ form_label(form.urgence_statut2, "Statut") }}
+								{{ form_errors(form.urgence_statut2) }}
+								{{ form_widget(form.urgence_statut2) }}
+							</div>
+							<div class="large-3 columns">
+								{{ form_label(form.urgence_tel2, "Téléphone") }}
+								{{ form_errors(form.urgence_tel2) }}
+								{{ form_widget(form.urgence_tel2) }}
+							</div>
+						</div>
+				    </div>
+				  </dd>
+				</dl>
+				
+				<h4><small>Equipement de ski</small></h4>
+
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.taille, "Taille (en cm)") }}
+				{{ form_errors(form.taille) }}
+				{{ form_widget(form.taille) }}
+				</div>
+				</div>
+				
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.poids, "Poids (en kg)") }}
+				{{ form_errors(form.poids) }}
+				{{ form_widget(form.poids) }}
+				</div>
+				</div>
+				
+				{{ form_rest(form) }}
+				<div class="row">
+				<div class="large-12 columns">
+			        <input type="submit" value="Enregistrer" class="button" />
+			    </div>
+			    </div>
+			</form>
+			
+			<ul class="breadcrumbs">
+				<li><a href="{{ path('r_heaven_ski_homepage') }}">&lt; Retourner à la fiche</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
 {% endblock %}

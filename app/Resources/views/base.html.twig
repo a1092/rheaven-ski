@@ -10,6 +10,45 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
+
+    <div class="fixed">
+        <nav class="top-bar" data-topbar data-options="is_hover: false">
+            <section class="top-bar-section">
+                <!-- Right Nav Section -->
+                <ul class="right">
+                    <li>
+                        <a href="{{ path('r_heaven_ski_homepage') }}">
+                        Dossier :  
+                        {% if app.user.statut == 'Refusé' %}
+                        <span class="label radius alert">
+                        {% elseif app.user.statut == 'Validé' %}
+                        <span class="label radius sucess">
+                        {% elseif app.user.statut == 'En attente' %}
+                        <span class="label radius">
+                        {% else %} 
+                        <span class="label radius secondary">
+                        {% endif %}
+                        {{ app.user.statut }}</span></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="has-form">
+                        <a href="{{ path('fos_user_security_logout') }}" class="button radius alert">Se déconnecter</a>
+                    </li>
+                </ul>
+
+                <!-- Left Nav Section -->
+                <ul class="left">
+                    <li><a href="{{ path('r_heaven_ski_index') }}">Compte : {{ app.user.email }}</a></li>
+                    <li class="divider"></li>
+                    {% if is_granted("USER_ADMIN") %}
+                    <li class="divider"></li>
+                    <li><a href="{{ path('r_heaven_ski_admin') }}" class="button radius alert">Gestion des inscriptions</a></li>
+                    {% endif %}
+                </ul>
+            </section>
+        </nav>
+    </div>
+
     <header class="row">
         <a href=""><img src="{{ asset('img/header-ski.png') }}" alt="R-Heaven - Voyage au ski" /></a>
     </header>
