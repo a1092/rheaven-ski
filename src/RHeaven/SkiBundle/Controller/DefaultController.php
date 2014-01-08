@@ -44,8 +44,8 @@ class DefaultController extends Controller
 		
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->get('security.context')->getToken()->getUser();
-		
-        $options = $em->getRepository('RHeavenSkiBundle:Options')->findOneByUser($user->getId());
+
+        	$options = $em->getRepository('RHeavenSkiBundle:Options')->findOneByUser($user->getId());
 		$paiement = $em->getRepository('RHeavenSkiBundle:Paiement')->findOneByUser($user->getId());
 		
 		
@@ -61,7 +61,8 @@ class DefaultController extends Controller
 				'total' => $total,
 		));
 
-		return new Response(
+
+			return new Response(
 			$this->get('knp_snappy.pdf')->getOutputFromHtml($html),
 			200,
 			array(
