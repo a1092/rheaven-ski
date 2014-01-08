@@ -5,7 +5,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="row">
-	<div class="large-9 large-centered columns">
+	<div class="large-7 columns">
 		<div class="panel">
 			<h3>S'inscrire au voyage</h3>
 
@@ -109,7 +109,7 @@
 
 				<div class="row">
 				<div class="large-12 columns">
-				{{ form_label(form.sante_probleme, "Problème(s) de santé (allergies, maladies, etc.)") }}
+				{{ form_label(form.sante_probleme, "Problème(s) de santé (allergies, régime alimentaire, maladies, etc.)") }}
 				{{ form_errors(form.sante_probleme) }}
 				{{ form_widget(form.sante_probleme) }}
 				</div>

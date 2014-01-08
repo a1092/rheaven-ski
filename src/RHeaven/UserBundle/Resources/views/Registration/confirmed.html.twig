@@ -1,16 +1,17 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends '::base.html.twig' %}
 
-{% trans_default_domain 'FOSUserBundle' %}
+{% block body -%}
 
-{% block fos_user_content %}
+<div class="row">
+	<div class="large-9 large-centered columns">
+		<div class="panel">
+			<div data-alert class="alert-box success radius">
+				Bravo, tu as bien été inscrit au site !
+			</div>
+			<p>Il reste encore quelques informations à renseigner avant de terminer ton inscription au voyage. Clique sur le lien ci-dessous pour te connecter à ton espace personnel.</p>
+			<p class="text-center"><a href="{{ path('r_heaven_ski_homepage') }}" class="button">Continuer mon inscription &gt;</a></p>
+		</div>
+	</div>
+</div>
 
-	<h1> Tu as bien �t� inscrit !</h1>
-	<p><a href="{{ path('r_heaven_ski_homepage') }}">Continuer mon inscription &gt;</a></p>
-   
-
-   <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if app.session is not empty %}
-        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
-        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
-    {% endif %}
-{% endblock fos_user_content %}
+{% endblock %}

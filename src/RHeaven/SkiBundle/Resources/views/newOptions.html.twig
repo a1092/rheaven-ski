@@ -1,15 +1,79 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Les options du ski !</h1>
 
-    {{ form(form) }}
+<div class="row">
+	<div class="large-9 large-centered columns">
+		<div class="panel">
+   			<h2>Les options du ski</h2>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('r_heaven_ski_homepage') }}">
-            Retourner à la fiche
-        </a>
-    </li>
-</ul>
+			<form {{ form_enctype(form) }} method="POST">
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.materiel, "Matériel") }}
+				{{ form_errors(form.materiel) }}
+				{{ form_widget(form.materiel) }}
+				</div>
+				</div>
+
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.assurance_materiel, "Assurance vol & casse matériel de ski Ski Republic") }}
+				{{ form_errors(form.assurance_materiel) }}
+				{{ form_widget(form.assurance_materiel) }}
+				</div>
+				</div>
+
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.assurance_neige, "Assurance neige") }}
+				{{ form_errors(form.assurance_neige) }}
+				{{ form_widget(form.assurance_neige) }}
+				</div>
+				</div>
+
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.assurance_voyage, "Assurance voyage Mondial Assistance") }}
+				{{ form_errors(form.assurance_voyage) }}
+				{{ form_widget(form.assurance_voyage) }}
+				</div>
+				</div>
+
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.assurance_risque, "Assurance tout compris : multirisque montagne Mondial Assistance	") }}
+				{{ form_errors(form.assurance_risque) }}
+				{{ form_widget(form.assurance_risque) }}
+				</div>
+				</div>
+
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.option_kelly, "Extension Espace Killy") }}
+				{{ form_errors(form.option_kelly) }}
+				{{ form_widget(form.option_kelly) }}
+				</div>
+				</div>
+
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.option_food, "Pack nourriture") }}
+				{{ form_errors(form.option_food) }}
+				{{ form_widget(form.option_food) }}
+				</div>
+				</div>
+				
+				{{ form_rest(form) }}
+				
+				<input type="submit" value="Enregistrer" class="button" />
+			</form>
+
+			<ul class="breadcrumbs">
+				<li><a href="{{ path('r_heaven_ski_homepage') }}">&lt; Retourner à la fiche</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 {% endblock %}

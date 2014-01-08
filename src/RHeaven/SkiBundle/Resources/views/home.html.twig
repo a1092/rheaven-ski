@@ -1,215 +1,330 @@
-{% extends "RHeavenUserBundle::layout.html.twig" %}
+{% extends '::base.html.twig' %}
 
-{% block fos_user_content %}
+{% block body -%}
 
-<h1>Inscription de {{ app.user.firstname }} {{ app.user.lastname }}</h1>
-<h2>Mes informations</h2>
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3>Mes informations personnelles</h3>
+			<div class="row">
+				<div class="large-6 columns">
+					<h3><small>Identité</small></h3>
+					<p>
+						<strong>Nom :</strong> {{ app.user.lastname }}
+						<hr />
+						<strong>Prénom :</strong> {{ app.user.firstname }}
+						<hr />
+						<strong>Promo :</strong> {{ app.user.promo }}
+						<hr />
+						<strong>Date de naissance :</strong> {{ app.user.birthdate|date("d/m/Y") }}
+						<hr />
+						<dl>
+							<dt>Adresse :</dt>
+							<dd>{{ app.user.address }}<br/>{{ app.user.postalcode }} {{ app.user.city }}</dd>
+						</dl>
+						<hr />
+						<strong>Téléphone :</strong> {{ app.user.phone }}
+						<hr />
+					</p>
+					<h3><small>Equipement de ski</small></h3>
+					<p>
+						<strong>Taille :</strong> {{ app.user.taille }} cm
+						<hr />
+						<strong>Poids :</strong> {{ app.user.poids }} kg
+						<hr />
+						<strong>Pointure :</strong> 
+					</p>					
+				</div>
+				<div class="large-6 columns">
+					<h3><small>Santé</small></h3>
+					<p>
+						<strong>Numéro de Sécurité Sociale :</strong> {{ app.user.ssNo }}
+						<hr />
+						<strong>Problème de santé :</strong> {{ app.user.santeProbleme }}
+						<hr />
+						<strong>Traitement :</strong> {{ app.user.santeTraitement }}
+						<hr />
+						<strong>Personne(s) à appeler en cas d'urgence :</strong>
+					</p>
+					<table>
+						<thead>
+							<tr>
+								<th>Identité</th>
+								<th>Statut</th>
+								<th>Téléphone</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>{{ app.user.urgencePrenom1 }} {{ app.user.urgenceNom1 }}</td>
+							<td>{{ app.user.urgenceStatut1 }}</td>
+							<td>{{ app.user.urgenceTel1 }}</td>
+						</tr>
+						{% if app.user.urgencePrenom2 is not null %}
+						<tr>
+							<td>{{ app.user.urgencePrenom2 }} {{ app.user.urgenceNom2 }}</td>
+							<td>{{ app.user.urgenceStatut2 }}</td>
+							<td>{{ app.user.urgenceTel2 }}</td>
+						</tr>
+						{% endif %}
+					</table>
+				</div>
+			</div>
+			<p class="text-center"><a class="button small secondary" href="{{ path('r_heaven_ski_person') }}">Modifier mes informations</a></p>
+		</div>
+	</div>
+</div>
 
-	<a href="{{ path('r_heaven_ski_person') }}">Modifier mes informations</a>
-
-<table>
-	<tr>
-		<td>Nom : </td>
-		<td>{{ app.user.lastname|upper }}</td>
-	</tr>
-	<tr>
-		<td>Prénom : </td>
-		<td>{{ app.user.firstname }}</td>
-	</tr>
-	<tr>
-		<td>Promo : </td>
-		<td>{{ app.user.promo }}</td>
-	</tr>
-	<tr>
-		<td>Date de naissance : </td>
-		<td>{{ app.user.birthdate|date("d/m/Y") }}</td>
-	</tr>
-	<tr>
-		<td>Adresse : </td>
-		<td>{{ app.user.address }}<br/>{{ app.user.postalcode }} {{ app.user.city }}</td>
-	</tr>
-	<tr>
-		<td>Téléphone : </td>
-		<td>{{ app.user.phone }}</td>
-	</tr>
-	<tr>
-		<td>No de Sécu : </td>
-		<td>{{ app.user.ssNo }}</td>
-	</tr>
-	<tr>
-		<td>Problème de santé : </td>
-		<td>{{ app.user.santeProbleme }}</td>
-	</tr>
-	<tr>
-		<td>Traitement : </td>
-		<td>{{ app.user.santeTraitement }}</td>
-	</tr>
-	<tr>
-		<td>Personne à contacter en cas d'urgence : </td>
-		<td>{{ app.user.urgencePrenom1 }} {{ app.user.urgenceNom1 }} ({{ app.user.urgenceStatut1 }})<br/>{{ app.user.urgenceTel1 }}</td>
-	</tr>
-	{% if app.user.urgencePrenom2 is not null %}
-	<tr>
-		<td></td>
-		<td>{{ app.user.urgencePrenom2 }} {{ app.user.urgenceNom2 }} ({{ app.user.urgenceStatut2 }})<br/>{{ app.user.urgenceTel2 }}</td>
-	</tr>
-	{% endif %}
-	<tr>
-		<td>Poids : </td>
-		<td>{{ app.user.poids }}</td>
-	</tr>
-	<tr>
-		<td>Taille : </td>
-		<td>{{ app.user.taille }}</td>
-	</tr>
-</table>
-
-
-<h2>Mes options du voyage</h2>
-{% if options is empty %}
-	<p>Vous n'avez pas encore défini les options de votre voyage.</p>
-	<a href="{{ path('r_heaven_ski_options') }}">Définir les options de mon voyage &gt;</a>
-{% else %}
-	<a href="{{ path('r_heaven_ski_options') }}">Modifier les options</a>
-<table>
-	<tr>
-		<td>Matériel : </td>
-		<td>{{ options.materiel }}</td>
-	</tr>
-	<tr>
-		<td>Assurance matériel : </td>
-		<td>{% if options.assuranceMateriel == 1 %}Oui{% else %}Non{% endif %}</td>
-	</tr>
-	<tr>
-		<td>Assurance neige : </td>
-		<td>{% if options.assuranceNeige == 1 %}Oui{% else %}Non{% endif %}</td>
-	</tr>
-	<tr>
-		<td>Assurance voyage : </td>
-		<td>{% if options.assuranceVoyage == 1 %}Oui{% else %}Non{% endif %}</td>
-	</tr>
-	<tr>
-		<td>Assurance risque : </td>
-		<td>{% if options.assuranceRisque == 1 %}Oui{% else %}Non{% endif %}</td>
-	</tr>
-	<tr>
-		<td>Extension kelly : </td>
-		<td>{% if options.optionKelly == 1 %}Oui{% else %}Non{% endif %}</td>
-	</tr>
-	<tr>
-		<td>Pack nourriture : </td>
-		<td>{% if options.optionFood == 1 %}Oui{% else %}Non{% endif %}</td>
-	</tr>
-</table>
-	
-{% endif %}
-
-<h2>Modalité de paiement</h3>
-{% if paiement is empty %}
-	<p>Vous n'avez pas encore défini les modalités de paiement de votre voyage.</p>
-	<a href="{{ path('r_heaven_ski_paiement') }}">Définir les options de mon voyage &gt;</a>
-{% else %}
-	<a href="{{ path('r_heaven_ski_paiement') }}">Modifier mon moyen de paiement</a>
-
-	<table>
-		<tr>
-			<td>Nombre de versement : </td>
-			<td>{{ paiement.modalites }}</td>
-		</tr>
-		<tr>
-			<td>Moyen de paiement : </td>
-			<td>{{ paiement.mode }}</td>
-		</tr>
-	</table>
-{% endif %}
-
-<h2>Récapitulatif du voyage</h2>
+<div class="row">
+	<div class="large-6 columns">
+		<div class="panel">
+			<h3>Mes options du voyage</h3>
+			{% if options is empty %}
+				<div data-alert class="alert-box warning radius">
+					Vous n'avez pas encore défini les options de votre voyage.
+					<a href="#" class="close">&times;</a>
+				</div>
+				<p class="text-center">
+					<a class="button small secondary" href="{{ path('r_heaven_ski_options') }}">Définir les options de mon voyage &gt;</a>
+				</p>
+			{% else %}
+				<table style="width: 100%" class="text-center">
+					<tr>
+						<td>Matériel</td>
+						<td><span class="secondary radius label">{{ options.materiel }}</span></td>
+					</tr>
+					<tr>
+						<td>Assurance matériel</td>
+						<td>
+							{% if options.assuranceMateriel == 1 %}
+								<span class="success radius label">Oui</span>
+							{% else %}
+								<span class="alert radius label">Non</span>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td>Assurance neige</td>
+						<td>
+							{% if options.assuranceNeige == 1 %}
+								<span class="success radius label">Oui</span>
+							{% else %}
+								<span class="alert radius label">Non</span>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td>Assurance voyage Mondial Assurance</td>
+						<td>
+							{% if options.assuranceVoyage == 1 %}
+								<span class="success radius label">Oui</span>
+							{% else %}
+								<span class="alert radius label">Non</span>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td>Assurance multirisque Mondial Assurance</td>
+						<td>
+							{% if options.assuranceRisque == 1 %}
+								<span class="success radius label">Oui</span>
+							{% else %}
+								<span class="alert radius label">Non</span>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td>Extension <a href="http://www.espacekilly.com">Espace Killy</a> : </td>
+						<td>
+							{% if options.optionKelly == 1 %}
+								<span class="success radius label">Oui</span>
+							{% else %}
+								<span class="alert radius label">Non</span>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td><a href="">Pack Nourriture</a></td>
+						<td>
+							{% if options.optionFood == 1 %}
+								<span class="success radius label">Oui</span>
+							{% else %}
+								<span class="alert radius label">Non</span>
+							{% endif %}
+						</td>
+					</tr>
+				</table>
+				<p class="text-center">
+					<a class="button small secondary" href="{{ path('r_heaven_ski_options') }}">Modifier mes options</a>
+				</p>
+			{% endif %}
+		</div>
+	</div>
+	<div class="large-6 columns">
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="panel">
+					<h3>Paiement</h3>
+					{% if paiement is empty %}
+						<div data-alert class="alert-box warning radius">
+							Vous n'avez pas encore défini les modalités de paiement de votre voyage.
+							<a href="#" class="close">&times;</a>
+						</div>
+						<p class="text-center">
+							<a class="button small secondary" href="{{ path('r_heaven_ski_paiement') }}">Définir les options de mon voyage &gt;</a>
+						</p>
+					{% else %}
+						<table style="width: 100%" class="text-center">
+							<tr>
+								<td>Moyen de paiement</td>
+								<td><span class="secondary radius label">{{ paiement.mode }}</span></td>
+							</tr>
+							<tr>
+								<td>Paiement en</td>
+								<td><span class="secondary radius label">{{ paiement.modalites }} fois</span></td>
+							</tr>
+						</table>
+						<p class="text-center">
+							<a class="button small secondary" href="{{ path('r_heaven_ski_paiement') }}">Modifier mon moyen de paiement</a>
+						</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="panel">
+					<h3>Un problème ?</h3>
+					<p>Passe nous voir au local quand tu veux !<br />Ou alors contacte l'équipe organisatrice à <a href="mailto:voyage@r-heaven.fr">voyage@r-heaven.fr</a> ;)</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 {% if options is not empty and paiement is not empty  %}
-<table>
-	<tr>
-		<td>Base du voyage : </td>
-		<td>460€</td>
-	</tr>
-	{% if options.materiel.price != 0 %}
-	<tr>
-		<td>{{ options.materiel.name }} : </td>
-		<td>{{ options.materiel.price }}€</td>
-	</tr>
-	{% endif %}
-	{% if options.assuranceMateriel == 1 %}
-	<tr>
-		<td>Assurance matériel : </td>
-		<td>12€</td>
-	</tr>
-	{% endif %}
-	{% if options.assuranceNeige == 1 %}
-	<tr>
-		<td>Assurance neige : </td>
-		<td>17€</td>
-	</tr>
-	{% endif %}
-	{% if options.assuranceVoyage == 1 %}
-	<tr>
-		<td>Assurance voyage : </td>
-		<td>11€</td>
-	</tr>
-	{% endif %}
-	{% if options.assuranceRisque == 1 %}
-	<tr>
-		<td>Assurance risque : </td>
-		<td>20€</td>
-	</tr>
-	{% endif %}
-	{% if options.optionKelly == 1 %}
-	<tr>
-		<td>Extension Kelly : </td>
-		<td>40€</td>
-	</tr>
-	{% endif %}
-	{% if options.optionFood == 1 %}
-	<tr>
-		<td>Option nourriture : </td>
-		<td>50€</td>
-	</tr>
-	{% endif %}
-	<tr>
-		<td>Total du voyage : </td>
-		<td>{{ total }}€</td>
-	</tr>
-</table>
+<div class="row">
+	<div class="large7 columns">
+		<div class="callout panel">
+			<h3>Récapitulatif du voyage</h3>
 
-{% if paiement.modalites == 1 %}
-<p> Le paiement est à effectuer en une seule fois par {{ paiement.mode }} dès l'inscription. </p>
-{% else %} 
-<p> Le paiement est à effectuer en deux fois par {{ paiement.mode|lower }} : </p>
-<ul>
-	<li>50% à l'inscription, soit {{ total/2 }}€</li>
-	<li>50% le vendredi 14 février 2014, soit {{ total/2 }}€</li>
-</ul>
-{% endif %}
+			<table style="width: 100%" class="text-center">
+				<tbody>
+					<tr>
+						<td>Base du voyage</td>
+						<td>460€</td>
+					</tr>
+					{% if options.materiel.price != 0 %}
+					<tr>
+						<td>{{ options.materiel.name }}</td>
+						<td>{{ options.materiel.price }}€</td>
+					</tr>
+					{% endif %}
+					{% if options.assuranceMateriel == 1 %}
+					<tr>
+						<td>Assurance matériel</td>
+						<td>12€</td>
+					</tr>
+					{% endif %}
+					{% if options.assuranceNeige == 1 %}
+					<tr>
+						<td>Assurance neige</td>
+						<td>17€</td>
+					</tr>
+					{% endif %}
+					{% if options.assuranceVoyage == 1 %}
+					<tr>
+						<td>Assurance voyage</td>
+						<td>11€</td>
+					</tr>
+					{% endif %}
+					{% if options.assuranceRisque == 1 %}
+					<tr>
+						<td>Assurance risque</td>
+						<td>20€</td>
+					</tr>
+					{% endif %}
+					{% if options.optionKelly == 1 %}
+					<tr>
+						<td>Extension <a href="http://www.espacekilly.com">Espace Killy</a></td>
+						<td>40€</td>
+					</tr>
+					{% endif %}
+					{% if options.optionFood == 1 %}
+					<tr>
+						<td>Option nourriture</td>
+						<td>50€</td>
+					</tr>
+					{% endif %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<th class="text-center">Total du voyage</th>
+						<th class="text-center">{{ total }}€</th>
+					</tr>
+				</tfoot>
+			</table>
 
-{% if paiement.mode == 'Chèque' %}
-	<p>Le chèque doit être fait à l'ordre de "BdE Efrei".</p>
-{% endif %}
+			{% if paiement.modalites == 1 %}
+				<p>Le paiement est à effectuer en <strong>une seule fois</strong> par <strong>{{ paiement.mode }}</strong> dès l'inscription.</p>
+			{% else %} 
+				<p>Le paiement est à effectuer en <strong>deux fois</strong> par <strong>{{ paiement.mode|lower }}</strong> :</p>
+				<ul class="circle">
+					<li>50% à l'inscription, soit {{ total/2 }}€</li>
+					<li>50% le vendredi 14 février 2014, soit {{ total/2 }}€</li>
+				</ul>
+			{% endif %}
 
+			{% if paiement.mode == 'Chèque' %}
+				<p>Le chèque doit être fait à l'ordre de <span class="secondary radius label">BDE Efrei</span></p>
+			{% endif %}
 
-	<h3> Documents à fournir </h3>
-	<ul>
-		<li>Ton dossier d'inscription imprimé</li>
-		<li>Ton paiement</li>
-		<li>Un chèque de caution de 100€ à l'ordre du BdE</li>
-		<li>Une photo d'identité (pour le forfait)</li>
-		<li>Une photocopie de ta pièce d'identité (recto/verso)</li>
-		<li>Une photocopie de ta carte vitale</li>
-		<li>Une photocopie de ta carte étudiante</li>
-	</ul>
-	<h3>Imprimer mon dossier</h3>
-	<p> <input type="checkbox" /> J'accepte le réglement dans son intégralité disponible <a href="">à cette adresse</a>.</p>
-
-	<a href="{{ path('r_heaven_ski_print_pdf') }}">Imprimer mon dossier en PDF</a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3>Documents à fournir</h3>
+			<ul class="circle">
+				<li>Ton dossier d'inscription imprimé <em>(voir ci-dessous)</em></li>
+				<li>Ton paiement <em>(voir ci-dessus)</em></li>
+				<li>Un chèque de caution de 100€ à l'ordre du BDE Efrei</li>
+				<li>Une photo d'identité (pour le forfait)</li>
+				<li>Une photocopie de ta pièce d'identité (recto/verso)</li>
+				<li>Une photocopie de ta carte vitale</li>
+				<li>Une photocopie de ta carte étudiante</li>
+			</ul>
+			<div data-alert class="alert-box info radius">
+				<span class="radius label">Info</span> Pense à nous signaler avec qui tu veux être dans le logement (studio de 4 personnes : 1 lit double / 1 lit superposé).
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3>Imprimer mon dossier</h3>
+			<p class="text-center">
+				<input type="checkbox" /> J'accepte le réglement dans son intégralité disponible <a href="">à cette adresse</a>.
+			</p>
+			<p class="text-center">
+				<a href="{{ path('r_heaven_ski_print_pdf') }}" class="button">Télécharger mon dossier en PDF</a>
+			</p>
+			<div data-alert class="alert-box warning radius">
+				<span class="alert radius label">Attention</span> Rapporte nous ton dossier sous 48h (jours ouvrés) au local BDE.
+			</div>
+		</div>
+	</div>
+</div>
 {% else %}
-<p>Dossier incomplet</p>
+<div class="row">
+	<div class="large-12 columns">
+		<div class="callout panel">
+			<h3>Récapitulatif du voyage</h3>
+			<p><span class="alert radius label">Dossier incomplet</span></p>
+		</div>
+	</div>
+</div>
 {% endif %}
 
-{% endblock fos_user_content %}
+{% endblock %}

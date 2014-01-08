@@ -1,15 +1,41 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Les options du ski !</h1>
 
-    {{ form(form) }}
+<div class="row">
+	<div class="large-9 large-centered columns">
+		<div class="panel">
+   			<h2>Choix du paiement</h2>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('r_heaven_ski_homepage') }}">
-            Retourner à la fiche
-        </a>
-    </li>
-</ul>
+			<form {{ form_enctype(form) }} method="POST">
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.modalites, "Modalités") }}
+				{{ form_errors(form.modalites) }}
+				{{ form_widget(form.modalites) }}
+				{{ form_widget(form.modalites) }}
+				</div>
+				</div>
+
+				<div class="row">
+				<div class="large-12 columns">
+				{{ form_label(form.mode, "Mode de paiement") }}
+				{{ form_errors(form.mode) }}
+				{{ form_widget(form.mode) }}
+				{{ form_widget(form.mode) }}
+				</div>
+				</div>
+
+				{{ form_rest(form) }}
+				
+				<input type="submit" value="Enregistrer" class="button" />
+			</form>
+
+			<ul class="breadcrumbs">
+				<li><a href="{{ path('r_heaven_ski_homepage') }}">&lt; Retourner à la fiche</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 {% endblock %}
