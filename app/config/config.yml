@@ -79,4 +79,4 @@ fos_user:
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     D:/wkhtmltopdf/wkhtmltopdf.exe
+        binary:    /home/www/lib/wkhtmltopdf-amd64 
