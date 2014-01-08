@@ -5,6 +5,9 @@
 <div class="row">
 	<div class="large-9 large-centered columns">
 		<div class="panel">
+			<ul class="breadcrumbs">
+				<li><a href="{{ path('r_heaven_ski_homepage') }}">&lt; Retourner à la fiche</a></li>
+			</ul>
    			<h2>Choix du paiement</h2>
 
 			<form {{ form_enctype(form) }} method="POST">
@@ -31,9 +34,9 @@
 				<input type="submit" value="Enregistrer" class="button" />
 			</form>
 
-			<ul class="breadcrumbs">
-				<li><a href="{{ path('r_heaven_ski_homepage') }}">&lt; Retourner à la fiche</a></li>
-			</ul>
+			<div data-alert class="alert-box info radius">
+				<span class="info radius label">Info</span> La paiement en deux fois ne peut se faire que par chèque.
+			</div>
 		</div>
 	</div>
 </div>
