@@ -204,8 +204,7 @@ class DefaultController extends Controller
 					''   => '',
 					'Père'   => 'Père',
 					'Mère' => 'Mère',
-					'Tuteur'   => 'Tuteur',
-					'Tutrice'   => 'Tutrice',
+					'Autre'   => 'Autre'
 				),
 				'multiple'  => false
 			))
@@ -221,8 +220,7 @@ class DefaultController extends Controller
 					''   => '',
 					'Père'   => 'Père',
 					'Mère' => 'Mère',
-					'Tuteur'   => 'Tuteur',
-					'Tutrice'   => 'Tutrice',
+					'Autre'   => 'Autre'
 				),
 				'multiple'  => false,
 				'required'    => false

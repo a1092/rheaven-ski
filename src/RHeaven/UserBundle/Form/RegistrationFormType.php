@@ -49,8 +49,7 @@ class RegistrationFormType extends BaseType
 						''   => '',
 						'Père'   => 'Père',
 						'Mère' => 'Mère',
-						'Tuteur'   => 'Tuteur',
-						'Tutrice'   => 'Tutrice',
+						'Autre'   => 'Autre'
 					),
 					'multiple'  => false
 				))
@@ -66,8 +65,7 @@ class RegistrationFormType extends BaseType
 						''   => '',
 						'Père'   => 'Père',
 						'Mère' => 'Mère',
-						'Tuteur'   => 'Tuteur',
-						'Tutrice'   => 'Tutrice',
+						'Autre'   => 'Autre'
 					),
 					'multiple'  => false,
 					'required'    => false

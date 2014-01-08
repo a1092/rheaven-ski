@@ -1,275 +1,291 @@
-<html class="no-js" lang="fr">
+<html lang="fr">
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="http://ski.r-heaven.fr/css/foundation.css" />
-    {% block stylesheets %}{% endblock %}
     <script src="http://ski.r-heaven.fr/js/modernizr.js"></script>
     <title>{% block title %}R-Heaven - Voyage au ski 2014{% endblock %}</title>
 	
 	<style>
+		
+		table tr th, table tr td {
+			font-size: 9px;
+		}
+		
+		table thead tr th, table thead tr td {
+			font-size: 9px;
+			
+		}
+		
+		.row {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		body {
+			font-size: 9px;
+		}
+		
 		hr {
 			margin: 0px;
 			margin-top: 3px;
 			margin-bottom: 3px;
 			padding: 0;
+		
 		}
+		h3 {
+			font-size: 14px;
+		}
+		
+		h3 small {
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+		
+		
 		
 	</style>
 </head>
 <body>
-
-<div style="float: left; padding-top: 60px; padding-left: 30px;"><h1>Dossier d'inscription au ski</h1></div>
-	<div style="float: right;"><img src="http://ski.r-heaven.fr/img/logo-rheaven.png" style="width: 150px; height: 150px;"></div>
-	<div style="clear:both;"></div>
-	
-<table style="border: 0px;">
-	<tr>
-		<td style="width: 50%;">
-<div class="row">
-	<div class="large-5 columns">
-		<div class="panel">
-			<h3>Mes informations personnelles</h3>
-			<div class="row">
-				<div class="large-6 columns">
-					<h3><small>Identité</small></h3>
-					<p>
-						<div>
-						<strong >Nom :</strong> {{ user.lastname }}
-						</div>
-						<hr />
-						<div>
-						<strong>Prénom :</strong> {{ user.firstname }}
-						</div>
-						<hr />
-						<div>
-						<strong>Promo :</strong> {{ user.promo }}
-						</div>
-						<hr />
-						<div>
-						<strong>Date de naissance :</strong> {{ user.birthdate|date("d/m/Y") }}
-						</div>
-						<hr />
-						<div>
-						<dl>
-							<dt>Adresse :</dt>
-							<dd>{{ user.address }}<br/>{{ user.postalcode }} {{ user.city }}</dd>
-						</dl>
-						</div>
-						<hr />
-						<div>
-						<strong>Téléphone :</strong> {{ user.phone }}
-						</div>
-						<hr />
-					</p>
-					<h3><small>Equipement de ski</small></h3>
-					<p>
-						<div>
-						<strong>Taille :</strong> {{ user.taille }} cm
-						</div>
-						<hr />
-						<div>
-						<strong>Poids :</strong> {{ user.poids }} kg
-						</div>
-						<hr />
-						<div>
-						<strong>Pointure :</strong>  {{ user.chaussure }}
-						</div>
-					</p>					
-				</div>
-				<div class="large-6 columns">
-					<h3><small>Santé</small></h3>
-					<p
-						<div>
-						<strong>No Secu :</strong> {{ user.ssNo }}
-						</div>
-						<hr />
-						<div>
-						<strong>Problème de santé :</strong> {{ user.santeProbleme }}
-						</div>
-						<hr />
-						<div>
-						<strong>Traitement :</strong> {{ user.santeTraitement }}
-						</div>
-						<hr />
-						<div>
-						<strong>Personne(s) à appeler en cas d'urgence :</strong>
-						</div>
-					</p>
-					<table>
-						<thead>
-							<tr>
-								<th>Identité</th>
-								<th>Statut</th>
-								<th>Téléphone</th>
-							</tr>
-						</thead>
-						<tr>
-							<td>{{ user.urgencePrenom1 }} {{ user.urgenceNom1 }}</td>
-							<td>{{ user.urgenceStatut1 }}</td>
-							<td>{{ user.urgenceTel1 }}</td>
-						</tr>
-						{% if user.urgencePrenom2 is not null %}
-						<tr>
-							<td>{{ user.urgencePrenom2 }} {{ user.urgenceNom2 }}</td>
-							<td>{{ user.urgenceStatut2 }}</td>
-							<td>{{ user.urgenceTel2 }}</td>
-						</tr>
-						{% endif %}
-					</table>
-				</div>
-			</div>			
-		</div>
-	</div>
-	
-	<div class="large-6 columns">
-		<div class="row">
-			<div class="large-12 columns">
-				<div class="panel">
-					<div>
-					En m'inscrivant via ce dossier, je certifie avoir pris connaissance du règlement de ce Voyage disponible sur demande au BdE et en accepte tous les termes.
-					</div>
-					<div style="margin-top: 29px;">Fait le ______________________________________</div>
-					<div style="margin-top: 20px;">A		_________________________________________</div>
-					<div style="margin-top: 10px; border: 1px solid #000; height: 100px; width: 100%;">Signature</div>
-	
-		
-		
-		
-		
-		
-		
-	
-	
-		
+<div style="margin-bottom: -4px;">
+<div style="float: left; padding-top: 20px; padding-left: 30px;"><h1>Dossier d'inscription au ski</h1></div>
+<div style="float: right;"><img src="http://ski.r-heaven.fr/img/logo-rheaven.png" style="width: 70px; height: 70px;"></div>
+<div style="clear:both;"></div>
 </div>
-</td>
-<td>
-
-
-<div class="row">
-	<div class="large-6 columns">
-		<div class="panel">
-			<h3>Mes options du voyage</h3>
-			
-				<table style="width: 100%" class="text-center">
-					<tr>
-						<td>Base du voyage</td>
-						<td>460€</td>
-					</tr>
-					<tr>
-						<td>Matériel</td>
-						<td><span class="secondary radius label">{{ options.materiel.name }} - {{ options.materiel.price }}€</span></td>
-					
-					</tr>
-					<tr>
-						<td>Assurance matériel</td>
-						<td>
-							{% if options.assuranceMateriel == 1 %}
-								<span class="success radius label">Oui - 12€</span>
-							{% else %}
-								<span class="alert radius label">Non</span>
-							{% endif %}
-						</td>						
-					</tr>
-					<tr>
-						<td>Assurance neige</td>
-						<td>
-							{% if options.assuranceNeige == 1 %}
-								<span class="success radius label">Oui - 17€</span>
-							{% else %}
-								<span class="alert radius label">Non</span>
-							{% endif %}
-						</td>
-					</tr>
-					<tr>
-						<td>Assurance voyage Mondial Assurance</td>
-						<td>
-							{% if options.assuranceVoyage == 1 %}
-								<span class="success radius label">Oui - 11€</span>
-							{% else %}
-								<span class="alert radius label">Non</span>
-							{% endif %}
-						</td>
-					</tr>
-					<tr>
-						<td>Assurance multirisque Mondial Assurance</td>
-						<td>
-							{% if options.assuranceRisque == 1 %}
-								<span class="success radius label">Oui - 20€</span>
-							{% else %}
-								<span class="alert radius label">Non</span>
-							{% endif %}
-						</td>
-					</tr>
-					<tr>
-						<td>Extension forfait Espace Killy</td>
-						<td>
-							{% if options.optionKelly == 1 %}
-								<span class="success radius label">Oui - 39€</span>
-							{% else %}
-								<span class="alert radius label">Non</span>
-							{% endif %}
-						</td>
-					</tr>
-					<tr>
-						<td>Pack Nourriture</td>
-						<td>
-							{% if options.optionFood == 1 %}
-								<span class="success radius label">Oui - 50€</span>
-							{% else %}
-								<span class="alert radius label">Non</span>
-							{% endif %}
-						</td>
-					</tr>
-					<tr style="font-weight: bold;">
-						<td style="border-top: 1px solid #CCC;">Total</td>
-						<td style="border-top: 1px solid #CCC;">
-							{{ total }}€
-						</td>
-					</tr>
-				</table>
-				
-		</div>
-	</div>
-	<div class="large-6 columns">
+<table style="border: 0px; margin: 0px; padding: 0px;">
+	<tr>
+	<td width="45%" style="margin: 0px; padding: 0px; padding-right: 20px;">
 		<div class="row">
-			<div class="large-12 columns">
-				<div class="panel">
-					<h3>Paiement</h3>
+			<div class="large-12 columns"  style="margin: 0; padding: 0;">
+				<div class="panel" style="padding-top: 5px; padding-bottom: 5px;" >
+		
 					
-						<table style="width: 100%" class="text-center">
-							<tr>
-								<td>Moyen de paiement</td>
-								<td><span class="secondary radius label">{{ paiement.mode }}</span>
-								{% if paiement.mode == 'Chèque' %}
-									<div style="margin-top: 3px;">Ordre : "BdE Efrei"</div>
-								{% endif %}
-								</td>
-							</tr>
-							<tr>
-								<td>Paiement en</td>
-								<td><span class="secondary radius label">{{ paiement.modalites }} fois</span>
-								
-								{% if paiement.modalites == 2 %}
-								<div style="margin-top: 3px; font-size: 9px;">
-									Encaissement à l'inscription : {{ total/2 }}€ <br/>
-									Encaissement le 14/02/2014 : {{ total/2 }}€
-								</div>
-								{% endif %}
-								</td>
-							</tr>
-						</table>
-						
+					<h3>Mes informations personnelles</h3>
+						<div class="row">
+							<div class="large-6 columns"  style="margin: 0; padding: 0;">
+								<h3><small>Identité</small></h3>
+								<p>
+									<div>
+									<strong >Nom :</strong> {{ user.lastname }}
+									</div>
+									<hr />
+									<div>
+									<strong>Prénom :</strong> {{ user.firstname }}
+									</div>
+									<hr />
+									<div>
+									<strong>Promo :</strong> {{ user.promo }}
+									</div>
+									<hr />
+									<div>
+									<strong>Date de naissance :</strong> {{ user.birthdate|date("d/m/Y") }}
+									</div>
+									<hr />
+									<div>
+									<dl  style="font-size: 9px;">
+										<dt>Adresse :</dt>
+										<dd>{{ user.address }}<br/>{{ user.postalcode }} {{ user.city }}</dd>
+									</dl>
+									</div>
+									<hr />
+									<div>
+									<strong>Téléphone :</strong> {{ user.phone }}
+									</div>
+									<hr />
+								</p>
+								<h3><small>Equipement de ski</small></h3>
+								<p>
+									<div>
+									<strong>Taille :</strong> {{ user.taille }} cm
+									</div>
+									<hr />
+									<div>
+									<strong>Poids :</strong> {{ user.poids }} kg
+									</div>
+									<hr />
+									<div>
+									<strong>Pointure :</strong>  {{ user.chaussure }}
+									</div>
+								</p>					
+							
+								<h3><small>Santé</small></h3>
+								<p>
+									<div>
+									<strong>No Secu :</strong> {{ user.ssNo }}
+									</div>
+									<hr />
+									<div>
+									<strong>Problème de santé :</strong> {{ user.santeProbleme }}
+									</div>
+									<hr />
+									<div>
+									<strong>Traitement :</strong> {{ user.santeTraitement }}
+									</div>
+									<hr />
+									<div>
+									<strong>Personne(s) à appeler en cas d'urgence :</strong>
+									</div>
+								</p>
+								<table>
+									<thead>
+										<tr>
+											<th>Identité</th>
+											<th>Statut</th>
+											<th>Téléphone</th>
+										</tr>
+									</thead>
+									<tr>
+										<td>{{ user.urgencePrenom1 }} {{ user.urgenceNom1 }}</td>
+										<td>{{ user.urgenceStatut1 }}</td>
+										<td>{{ user.urgenceTel1 }}</td>
+									</tr>
+									{% if user.urgencePrenom2 is not null %}
+									<tr>
+										<td>{{ user.urgencePrenom2 }} {{ user.urgenceNom2 }}</td>
+										<td>{{ user.urgenceStatut2 }}</td>
+										<td>{{ user.urgenceTel2 }}</td>
+									</tr>
+									{% endif %}
+								</table>
+							</div>
+						</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="large-6 columns">
 		<div class="row">
-			<div class="large-12 columns">
-				<div class="panel">
-					<h3>Documents à fournir</h3>
+			<div class="large-12 columns"  style="margin: 0; padding: 0;">
+				<div class="panel" style="padding-top: 5px; padding-bottom: 5px;">
+					<div>
+					En m'inscrivant via ce dossier, je certifie avoir pris connaissance du règlement de ce Voyage disponible sur demande au BdE et en accepte tous les termes.
+					</div>
+					<div style="margin-top: 10px;">Fait le ___________________________________</div>
+					<div style="margin-top: 10px;">A		__________________________________</div>
+					<div style="margin-top: 10px; border: 1px solid #000; height: 80px; width: 100%;">Signature</div>
+		
+											
+				</div>
+			</div>
+		</div>
+	</td>
+	<td style="margin: 0px; padding: 0px;">
+	<div class="large-6 columns"  style="margin: 0; padding: 0;">
+		<div class="row">
+			<div class="large-12 columns" style="margin: 0; padding: 0;">
+				<div class="panel" style="padding-top: 5px; padding-bottom: 5px;">
+					<h3>Mes options du voyage</h3>
+					<table style="width: 100%" class="text-center">
+						<tr>
+							<td>Base du voyage</td>
+							<td>460€</td>
+						</tr>
+						<tr>
+							<td>Matériel</td>
+							<td>{{ options.materiel.name }} - {{ options.materiel.price }}€</td>
+						
+						</tr>
+						<tr>
+							<td>Assurance matériel</td>
+							<td>
+								{% if options.assuranceMateriel == 1 %}
+									<span class="success radius label">Oui - 12€</span>
+								{% else %}
+									<span class="alert radius label">Non</span>
+								{% endif %}
+							</td>						
+						</tr>
+						<tr>
+							<td>Assurance neige</td>
+							<td>
+								{% if options.assuranceNeige == 1 %}
+									<span class="success radius label">Oui - 17€</span>
+								{% else %}
+									<span class="alert radius label">Non</span>
+								{% endif %}
+							</td>
+						</tr>
+						<tr>
+							<td>Assurance voyage Mondial Assurance</td>
+							<td>
+								{% if options.assuranceVoyage == 1 %}
+									<span class="success radius label">Oui - 11€</span>
+								{% else %}
+									<span class="alert radius label">Non</span>
+								{% endif %}
+							</td>
+						</tr>
+						<tr>
+							<td>Assurance multirisque Mondial Assurance</td>
+							<td>
+								{% if options.assuranceRisque == 1 %}
+									<span class="success radius label">Oui - 20€</span>
+								{% else %}
+									<span class="alert radius label">Non</span>
+								{% endif %}
+							</td>
+						</tr>
+						<tr>
+							<td>Extension forfait Espace Killy</td>
+							<td>
+								{% if options.optionKelly == 1 %}
+									<span class="success radius label">Oui - 39€</span>
+								{% else %}
+									<span class="alert radius label">Non</span>
+								{% endif %}
+							</td>
+						</tr>
+						<tr>
+							<td>Pack Nourriture</td>
+							<td>
+								{% if options.optionFood == 1 %}
+									<span class="success radius label">Oui - 50€</span>
+								{% else %}
+									<span class="alert radius label">Non</span>
+								{% endif %}
+							</td>
+						</tr>
+						<tr style="font-weight: bold;">
+							<td style="border-top: 1px solid #CCC; ">Total</td>
+							<td style="border-top: 1px solid #CCC;">
+								{{ total }}€
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns"  style="margin: 0; padding: 0;">
+				<div class="panel" style="padding-top: 5px; padding-bottom: 5px;">
+					<h3>Paiement</h3>
+						
+					<table style="width: 100%" class="text-center">
+						<tr>
+							<td>Moyen de paiement</td>
+							<td><span class="secondary radius label">{{ paiement.mode }} {% if paiement.mode == 'Chèque' %}<small>ordre : "BdE Efrei"</small>{% endif %}</span>
+							
+							</td>
+						</tr>
+						<tr>
+							<td>Paiement en</td>
+							<td><span class="secondary radius label"> {{ paiement.modalites }} x {{ total/2 }}€</span>
+							
+							{% if paiement.modalites == 2 %}
+							<div style="margin-bottom: -10px; font-size: 8px;">
+								Encaissement : à l'inscription + le 14/02/2014 
+							</div>
+							{% endif %}
+							</td>
+						</tr>
+					</table>
 					
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="large-12 columns"  style="margin: 0; padding: 0;">
+				<div class="panel" style="padding-top: 5px; padding-bottom: 5px;">
+					<h3>Documents à fournir</h3>
+						
 					<ul style="list-style-type:none; padding:0; font-size: 10px;">
 						<li style="margin:0px; padding: 0px;"><input type="checkbox" /> Ton dossier d'inscription imprimé et signé</li>
 						<li style="margin:0px; padding: 0px;"><input type="checkbox" /> Le règlement imprimé et signé</li>
@@ -281,22 +297,13 @@
 						<li style="margin:0px; padding: 0px;"><input type="checkbox" /> Une photocopie de ta carte étudiante mise à jour</li>
 					</ul>
 
-						
 				</div>
 			</div>
 		</div>
-	</div>
-	
-</div>	
-
-
-	
-</td>
-</tr>
+		</td>
+	</tr>
 </table>
-	
-	
-	
+
 
 	</body>
 </html>
