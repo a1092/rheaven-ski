@@ -5,7 +5,11 @@
 <div class="row">
 	<div class="large-9 large-centered columns">
 		<div class="panel">
-   			<h2>Les options du ski</h2>
+   			<h2>Mes options de voyage</h2>
+
+   			<p class="text-center">
+   				<a href="#" class="button secondary small" data-reveal-id="optionsSup">Voir le détail des options supplémentaires</a>
+   			</p>
 
 			<form {{ form_enctype(form) }} method="POST">
 				<div class="row">
@@ -18,49 +22,49 @@
 
 				<div class="row">
 				<div class="large-12 columns">
-				{{ form_label(form.assurance_materiel, "Assurance vol & casse matériel de ski Ski Republic") }}
 				{{ form_errors(form.assurance_materiel) }}
 				{{ form_widget(form.assurance_materiel) }}
+				{{ form_label(form.assurance_materiel, "Assurance vol & casse matériel de ski Ski Republic (+ 12€)") }}
 				</div>
 				</div>
 
 				<div class="row">
 				<div class="large-12 columns">
-				{{ form_label(form.assurance_neige, "Assurance neige") }}
 				{{ form_errors(form.assurance_neige) }}
 				{{ form_widget(form.assurance_neige) }}
+				{{ form_label(form.assurance_neige, "Assurance neige (+ 17€)") }}
 				</div>
 				</div>
 
 				<div class="row">
 				<div class="large-12 columns">
-				{{ form_label(form.assurance_voyage, "Assurance voyage Mondial Assistance") }}
 				{{ form_errors(form.assurance_voyage) }}
 				{{ form_widget(form.assurance_voyage) }}
+				{{ form_label(form.assurance_voyage, "Assurance voyage Mondial Assistance (+ 11€)") }}
 				</div>
 				</div>
 
 				<div class="row">
 				<div class="large-12 columns">
-				{{ form_label(form.assurance_risque, "Assurance tout compris : multirisque montagne Mondial Assistance	") }}
 				{{ form_errors(form.assurance_risque) }}
 				{{ form_widget(form.assurance_risque) }}
+				{{ form_label(form.assurance_risque, "Assurance tout compris : multirisque montagne Mondial Assistance (+ 20€)") }}
 				</div>
 				</div>
 
 				<div class="row">
 				<div class="large-12 columns">
-				{{ form_label(form.option_kelly, "Extension Espace Killy") }}
 				{{ form_errors(form.option_kelly) }}
 				{{ form_widget(form.option_kelly) }}
+				{{ form_label(form.option_kelly, "Extension forfait Espace Killy (+ 40€)") }}
 				</div>
 				</div>
 
 				<div class="row">
 				<div class="large-12 columns">
-				{{ form_label(form.option_food, "Pack nourriture") }}
 				{{ form_errors(form.option_food) }}
 				{{ form_widget(form.option_food) }}
+				{{ form_label(form.option_food, "Pack nourriture (+ 50€)") }}
 				</div>
 				</div>
 				
@@ -75,5 +79,7 @@
 		</div>
 	</div>
 </div>
+
+{% include 'RHeavenSkiBundle::optionsDetails.html.twig' %}
 
 {% endblock %}
