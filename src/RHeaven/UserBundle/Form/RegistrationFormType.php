@@ -33,11 +33,7 @@ class RegistrationFormType extends BaseType
 				))
 				->add('birthdate', 'date', array(
 						'widget' => 'single_text',
-						'widget' => 'choice',
-						'format' => 'dd/MM/yyyy',
-						'years' => range(Date('Y')-30, Date('Y')-16),
-						'empty_data'  => '',
-						'required'    => true,
+						
 				))
 				->add('address', 'textarea')
 				->add('postalcode')
@@ -81,6 +77,11 @@ class RegistrationFormType extends BaseType
 				))
 				->add('taille')
 				->add('poids')
+				->add('statut', 'hidden', array(
+					'data' => 'En cours',
+					'required' => true,
+					'read_only' => true
+				))
 		;
     }
 

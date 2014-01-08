@@ -1,0 +1,113 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Dossier de {{ dossier.firstname }} {{ dossier.lastname|upper }}</h1>
+	
+	<a href="{{ path('r_heaven_ski_admin') }}">&lt; Retour aux dossiers</a>
+	<h2>Profil</h2>
+	
+<table>
+	<tr>
+		<td>Nom : </td>
+		<td>{{ dossier.lastname|upper }}</td>
+	</tr>
+	<tr>
+		<td>Prénom : </td>
+		<td>{{ dossier.firstname }}</td>
+	</tr>
+	<tr>
+		<td>Promo : </td>
+		<td>{{ dossier.promo }}</td>
+	</tr>
+	<tr>
+		<td>Date de naissance : </td>
+		<td>{{ dossier.birthdate|date("d/m/Y") }}</td>
+	</tr>
+	<tr>
+		<td>Adresse : </td>
+		<td>{{ dossier.address }}<br/>{{ dossier.postalcode }} {{ dossier.city }}</td>
+	</tr>
+	<tr>
+		<td>Téléphone : </td>
+		<td>{{ dossier.phone }}</td>
+	</tr>
+	<tr>
+		<td>No de Sécu : </td>
+		<td>{{ dossier.ssNo }}</td>
+	</tr>
+	<tr>
+		<td>Problème de santé : </td>
+		<td>{{ dossier.santeProbleme }}</td>
+	</tr>
+	<tr>
+		<td>Traitement : </td>
+		<td>{{ dossier.santeTraitement }}</td>
+	</tr>
+	<tr>
+		<td>Personne à contacter en cas d'urgence : </td>
+		<td>{{ dossier.urgencePrenom1 }} {{ dossier.urgenceNom1 }} ({{ dossier.urgenceStatut1 }})<br/>{{ dossier.urgenceTel1 }}</td>
+	</tr>
+	{% if dossier.urgencePrenom2 is not null %}
+	<tr>
+		<td></td>
+		<td>{{ dossier.urgencePrenom2 }} {{ dossier.urgenceNom2 }} ({{ dossier.urgenceStatut2 }})<br/>{{ dossier.urgenceTel2 }}</td>
+	</tr>
+	{% endif %}
+	<tr>
+		<td>Poids : </td>
+		<td>{{ dossier.poids }}</td>
+	</tr>
+	<tr>
+		<td>Taille : </td>
+		<td>{{ dossier.taille }}</td>
+	</tr>
+</table>
+
+<h3>Options du voyage</h3>
+<table>
+	<tr>
+		<td>Matériel : </td>
+		<td>{{ dossier.options.materiel.name }}</td>
+	</tr>
+	<tr>
+		<td>Assurance matériel : </td>
+		<td>{% if dossier.options.assuranceMateriel == 1 %}Oui{% else %}Non{% endif %}</td>
+	</tr>
+	<tr>
+		<td>Assurance neige : </td>
+		<td>{% if dossier.options.assuranceNeige == 1 %}Oui{% else %}Non{% endif %}</td>
+	</tr>
+	<tr>
+		<td>Assurance voyage : </td>
+		<td>{% if dossier.options.assuranceVoyage == 1 %}Oui{% else %}Non{% endif %}</td>
+	</tr>
+	<tr>
+		<td>Assurance risque : </td>
+		<td>{% if dossier.options.assuranceRisque == 1 %}Oui{% else %}Non{% endif %}</td>
+	</tr>
+	<tr>
+		<td>Extension kelly : </td>
+		<td>{% if dossier.options.optionKelly == 1 %}Oui{% else %}Non{% endif %}</td>
+	</tr>
+	<tr>
+		<td>Pack nourriture : </td>
+		<td>{% if dossier.options.optionFood == 1 %}Oui{% else %}Non{% endif %}</td>
+	</tr>
+</table>
+
+<h3>Modalité de paiement</h3>
+<table>
+	<tr>
+		<td>Nombre de versement : </td>
+		<td>{{ dossier.paiement.modalites }}</td>
+	</tr>
+	<tr>
+		<td>Moyen de paiement : </td>
+		<td>{{ dossier.paiement.mode }}</td>
+	</tr>
+	<tr>
+		<td>Montant du voyage : </td>
+		<td>{{ dossier.options.total+460 }}€</td>
+	</tr>
+</table>
+{% endblock %}

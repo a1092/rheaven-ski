@@ -22,7 +22,7 @@ class Options
     private $id;
 
 	/**
-	* @ORM\OneToOne(targetEntity="RHeaven\UserBundle\Entity\User")
+	* @ORM\OneToOne(targetEntity="RHeaven\UserBundle\Entity\User", mappedBy="options")
 	* @ORM\JoinColumn(nullable=false)
 	*/
 	private $user;
@@ -234,6 +234,7 @@ class Options
     public function setUser(\RHeaven\UserBundle\Entity\User $user)
     {
         $this->user = $user;
+		$user->setOptions($this);
 
         return $this;
     }

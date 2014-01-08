@@ -36,7 +36,7 @@ class Paiement
     private $mode;
 	
 	/**
-	* @ORM\OneToOne(targetEntity="RHeaven\UserBundle\Entity\User")
+	* @ORM\OneToOne(targetEntity="RHeaven\UserBundle\Entity\User", mappedBy="paiement")
 	* @ORM\JoinColumn(nullable=false)
 	*/
 	private $user;
@@ -107,6 +107,7 @@ class Paiement
     public function setUser(\RHeaven\UserBundle\Entity\User $user)
     {
         $this->user = $user;
+		$user->setPaiement($this);
 
         return $this;
     }

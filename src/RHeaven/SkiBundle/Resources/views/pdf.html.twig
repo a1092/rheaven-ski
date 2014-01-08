@@ -14,57 +14,57 @@
 		<table>
 			<tr>
 				<td>Nom : </td>
-				<td>{{ app.user.lastname|upper }}</td>
+				<td>{{ user.lastname|upper }}</td>
 			</tr>
 			<tr>
 				<td>Prénom : </td>
-				<td>{{ app.user.firstname }}</td>
+				<td>{{ user.firstname }}</td>
 			</tr>
 			<tr>
 				<td>Promo : </td>
-				<td>{{ app.user.promo }}</td>
+				<td>{{ user.promo }}</td>
 			</tr>
 			<tr>
 				<td>Date de naissance : </td>
-				<td>{{ app.user.birthdate|date("d/m/Y") }}</td>
+				<td>{{ user.birthdate|date("d/m/Y") }}</td>
 			</tr>
 			<tr>
 				<td>Adresse : </td>
-				<td>{{ app.user.address }}<br/>{{ app.user.postalcode }} {{ app.user.city }}</td>
+				<td>{{ user.address }}<br/>{{ user.postalcode }} {{ user.city }}</td>
 			</tr>
 			<tr>
 				<td>Téléphone : </td>
-				<td>{{ app.user.phone }}</td>
+				<td>{{ user.phone }}</td>
 			</tr>
 			<tr>
 				<td>No de Sécu : </td>
-				<td>{{ app.user.ssNo }}</td>
+				<td>{{ user.ssNo }}</td>
 			</tr>
 			<tr>
 				<td>Problème de santé : </td>
-				<td>{{ app.user.santeProbleme }}</td>
+				<td>{{ user.santeProbleme }}</td>
 			</tr>
 			<tr>
 				<td>Traitement : </td>
-				<td>{{ app.user.santeTraitement }}</td>
+				<td>{{ user.santeTraitement }}</td>
 			</tr>
 			<tr>
 				<td>Personne à contacter en cas d'urgence : </td>
-				<td>{{ app.user.urgencePrenom1 }} {{ app.user.urgenceNom1|upper }} ({{ app.user.urgenceStatut1 }})<br/>{{ app.user.urgenceTel1 }}</td>
+				<td>{{ user.urgencePrenom1 }} {{ user.urgenceNom1|upper }} ({{ user.urgenceStatut1 }})<br/>{{ user.urgenceTel1 }}</td>
 			</tr>
-			{% if app.user.urgencePrenom2 is not null %}
+			{% if user.urgencePrenom2 is not null %}
 			<tr>
 				<td></td>
-				<td>{{ app.user.urgencePrenom2 }} {{ app.user.urgenceNom2|upper }} ({{ app.user.urgenceStatut2 }})<br/>{{ app.user.urgenceTel2 }}</td>
+				<td>{{ user.urgencePrenom2 }} {{ user.urgenceNom2|upper }} ({{ user.urgenceStatut2 }})<br/>{{ user.urgenceTel2 }}</td>
 			</tr>
 			{% endif %}
 			<tr>
 				<td>Poids : </td>
-				<td>{{ app.user.poids }}</td>
+				<td>{{ user.poids }}</td>
 			</tr>
 			<tr>
 				<td>Taille : </td>
-				<td>{{ app.user.taille }}</td>
+				<td>{{ user.taille }}</td>
 			</tr>
 		</table>
 

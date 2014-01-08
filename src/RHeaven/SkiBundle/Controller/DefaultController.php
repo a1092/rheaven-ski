@@ -53,6 +53,7 @@ class DefaultController extends Controller
 			$total = null;
 		
 		$html = $this->renderView('RHeavenSkiBundle::pdf.html.twig', array(
+				'user' => $user,
 				'options' => $options,
 				'paiement' => $paiement,
 				'total' => $total,
@@ -172,11 +173,6 @@ class DefaultController extends Controller
 			))
 			->add('birthdate', 'date', array(
 					'widget' => 'single_text',
-					'widget' => 'choice',
-					'format' => 'dd/MM/yyyy',
-					'years' => range(Date('Y')-30, Date('Y')-16),
-					'empty_data'  => '',
-					'required'    => true,
 			))
 			->add('address', 'textarea')
 			->add('postalcode')
@@ -220,7 +216,6 @@ class DefaultController extends Controller
 			))
 			->add('taille')
 			->add('poids')
-			->add('submit', 'submit')
 			->getForm()
         ;
     }
@@ -236,7 +231,6 @@ class DefaultController extends Controller
             ->add('assurance_risque')
             ->add('option_kelly')
             ->add('option_food')
-			->add('submit', 'submit')
 			->getForm()
         ;
     }

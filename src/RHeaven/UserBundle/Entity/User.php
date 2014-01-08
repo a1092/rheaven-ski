@@ -141,7 +141,17 @@ class User extends BaseUser
 	*/
 	private $statut;
 	
+	/**
+	* @ORM\OneToOne(targetEntity="RHeaven\SkiBundle\Entity\Paiement", inversedBy="user", cascade={"persist"})
+	* @ORM\JoinColumn(nullable=true)
+	*/
+	private $paiement;
 	
+	/**
+	* @ORM\OneToOne(targetEntity="RHeaven\SkiBundle\Entity\Options", inversedBy="user", cascade={"persist"})
+	* @ORM\JoinColumn(nullable=true)
+	*/
+	private $options;
 	
     /**
      * Get id
@@ -663,5 +673,51 @@ class User extends BaseUser
     public function getStatut()
     {
         return $this->statut;
+    }
+
+    /**
+     * Set paiement
+     *
+     * @param \RHeaven\SkiBundle\Entity\Paiement $paiement
+     * @return User
+     */
+    public function setPaiement(\RHeaven\SkiBundle\Entity\Paiement $paiement = null)
+    {
+        $this->paiement = $paiement;
+		
+        return $this;
+    }
+
+    /**
+     * Get paiement
+     *
+     * @return \RHeaven\SkiBundle\Entity\Paiement 
+     */
+    public function getPaiement()
+    {
+        return $this->paiement;
+    }
+
+    /**
+     * Set options
+     *
+     * @param \RHeaven\SkiBundle\Entity\Options $options
+     * @return User
+     */
+    public function setOptions(\RHeaven\SkiBundle\Entity\Options $options = null)
+    {
+        $this->options = $options;
+		
+        return $this;
+    }
+
+    /**
+     * Get options
+     *
+     * @return \RHeaven\SkiBundle\Entity\Options 
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 }

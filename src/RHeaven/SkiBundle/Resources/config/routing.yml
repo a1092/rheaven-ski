@@ -26,3 +26,19 @@ r_heaven_ski_paiement:
 r_heaven_ski_print_pdf:
     pattern:  /ski/print/pdf
     defaults: { _controller: RHeavenSkiBundle:Default:pdf }
+
+r_heaven_ski_admin:
+    pattern:  /admin
+    defaults: { _controller: RHeavenSkiBundle:Admin:status }
+
+r_heaven_ski_admin_show:
+    pattern:  /admin/show/{id}
+    defaults: { _controller: RHeavenSkiBundle:Admin:show }
+
+r_heaven_ski_admin_print:
+    pattern:  /admin/print/{id}
+    defaults: { _controller: RHeavenSkiBundle:Admin:pdf }
+
+r_heaven_ski_admin_calidation:
+    pattern:  /admin/validation/{id}/{type}
+    defaults: { _controller: RHeavenSkiBundle:Admin:validation }

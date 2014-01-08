@@ -1,0 +1,171 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Inscriptions</h1>
+	
+	<h2>En cours</h2>
+	<table>
+		<tr>
+			<th>#</th>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Promo</th>
+			<th>Téléphone</th>
+			<th>Email</th>
+			<th>Options</th>
+			<th>Paiement</th>
+			<th>Total</th>
+			<th></th>
+		</tr>
+		{% for statut in status.0 %}
+		<tr>
+			<td>#</td>
+			<td>{{ statut.lastname }}</td>
+			<td>{{ statut.firstname }}</td>
+			<td>{{ statut.promo }}</td>
+			<td>{{ statut.phone }}</td>
+			<td>{{ statut.email }}</td>
+			<td>{% if statut.options is not null %} {{ statut.options.total }}€ {% else %}  {% endif %}</td>
+			<td>{% if statut.paiement is not null %} {{ statut.paiement.mode }} x {{ statut.paiement.modalites }}{% else %}  {% endif %}</td>
+			<td>{% if statut.options is not null and statut.options.total is not null %}{{ statut.options.total+460 }}€{% endif %}</td>
+			<td>
+				{% if statut.options is not null and statut.options.total is not null %}
+				<a class="button tiny" style="margin:0px;"  href="{{ path('r_heaven_ski_admin_print', { 'id': statut.id }) }}">Impression</a>
+				<a class="button tiny" style="margin:0px;" onclick="return dossierComplet();" href="{{ path('r_heaven_ski_admin_calidation', { 'id': statut.id, 'type': 2 }) }}" >Dossier receptionné</a>
+				<a class="button tiny success" style="margin:0px;" href="{{ path('r_heaven_ski_admin_show', { 'id': statut.id }) }}">Consulter le dossier</a>
+				{% endif %}
+			</td>
+		</tr>
+		{% else %}
+			<td colspan="10" style="text-align: center;">Aucun dossier.</td>
+		{% endfor %}
+	</table>
+	<h2>En attente de validation</h2>
+	<table>
+		<tr>
+			<th>#</th>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Promo</th>
+			<th>Téléphone</th>
+			<th>Email</th>
+			<th>Options</th>
+			<th>Paiement</th>
+			<th>Total</th>
+			<th></th>
+		</tr>
+		{% for statut in status.1 %}
+		<tr>
+			<td>#</td>
+			<td>{{ statut.lastname }}</td>
+			<td>{{ statut.firstname }}</td>
+			<td>{{ statut.promo }}</td>
+			<td>{{ statut.phone }}</td>
+			<td>{{ statut.email }}</td>
+			<td>{% if statut.options is not null %} {{ statut.options.total }}€ {% else %}  {% endif %}</td>
+			<td>{% if statut.paiement is not null %} {{ statut.paiement.mode }} x {{ statut.paiement.modalites }}{% else %}  {% endif %}</td>
+			<td>{% if statut.options is not null and statut.options.total is not null %}{{ statut.options.total+460 }}€{% endif %}</td>
+			<td>
+				{% if statut.options is not null and statut.options.total is not null %}
+				<a class="button tiny" style="margin:0px;" href="{{ path('r_heaven_ski_admin_print', { 'id': statut.id }) }}">Impression</a>
+				<a class="button tiny success" style="margin:0px;" href="{{ path('r_heaven_ski_admin_calidation', { 'id': statut.id, 'type': 3 }) }}" >Valider</a>
+				<a class="button tiny alert" style="margin:0px;"  href="{{ path('r_heaven_ski_admin_calidation', { 'id': statut.id, 'type': 4 }) }}" >Refuser</a>
+				<a class="button tiny success" style="margin:0px;" href="{{ path('r_heaven_ski_admin_show', { 'id': statut.id }) }}">Consulter le dossier</a>
+				{% endif %}
+			</td>
+		</tr>
+		{% else %}
+			<td colspan="10">Aucun dossier.</td>
+		{% endfor %}
+	</table>
+	<h2>Validée</h2>
+	<table>
+		<tr>
+			<th>#</th>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Promo</th>
+			<th>Téléphone</th>
+			<th>Email</th>
+			<th>Options</th>
+			<th>Paiement</th>
+			<th>Total</th>
+			<th></th>
+		</tr>
+		{% for statut in status.2 %}
+		<tr>
+			<td>#</td>
+			<td>{{ statut.lastname }}</td>
+			<td>{{ statut.firstname }}</td>
+			<td>{{ statut.promo }}</td>
+			<td>{{ statut.phone }}</td>
+			<td>{{ statut.email }}</td>
+			<td>{% if statut.options is not null %} {{ statut.options.total }}€ {% else %}  {% endif %}</td>
+			<td>{% if statut.paiement is not null %} {{ statut.paiement.mode }} x {{ statut.paiement.modalites }}{% else %}  {% endif %}</td>
+			<td>{% if statut.options is not null and statut.options.total is not null %}{{ statut.options.total+460 }}€{% endif %}</td>
+			<td>
+				{% if statut.options is not null and statut.options.total is not null %}
+				<a class="button tiny" style="margin:0px;"  href="{{ path('r_heaven_ski_admin_print', { 'id': statut.id }) }}">Impression</a>
+				<a class="button tiny" style="margin:0px;"  href="{{ path('r_heaven_ski_admin_calidation', { 'id': statut.id, 'type': 2 }) }}" >En attente</a>
+				<a class="button tiny alert" style="margin:0px;"  href="{{ path('r_heaven_ski_admin_calidation', { 'id': statut.id, 'type': 4 }) }}" >Refuser</a>
+				<a class="button tiny success" style="margin:0px;" href="{{ path('r_heaven_ski_admin_show', { 'id': statut.id }) }}">Consulter le dossier</a>
+				{% endif %}
+			</td>
+		</tr>
+		{% else %}
+			<td colspan="10" style="text-align: center;">Aucun dossier.</td>
+		{% endfor %}
+	</table>
+	<h2>Refusée</h2>
+	<table>
+		<tr>
+			<th>#</th>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Promo</th>
+			<th>Téléphone</th>
+			<th>Email</th>
+			<th>Options</th>
+			<th>Paiement</th>
+			<th>Total</th>
+			<th></th>
+		</tr>
+		{% for statut in status.3 %}
+		<tr>
+			<td>#</td>
+			<td>{{ statut.lastname }}</td>
+			<td>{{ statut.firstname }}</td>
+			<td>{{ statut.promo }}</td>
+			<td>{{ statut.phone }}</td>
+			<td>{{ statut.email }}</td>
+			<td>{% if statut.options is not null %} {{ statut.options.total }}€ {% else %}  {% endif %}</td>
+			<td>{% if statut.paiement is not null %} {{ statut.paiement.mode }} x {{ statut.paiement.modalites }}{% else %}  {% endif %}</td>
+			<td>{% if statut.options is not null and statut.options.total is not null %}{{ statut.options.total+460 }}€{% endif %}</td>
+			<td>
+				{% if statut.options is not null and statut.options.total is not null %}
+				<a class="button tiny" style="margin:0px;"  href="{{ path('r_heaven_ski_admin_print', { 'id': statut.id }) }}">Impression</a>
+				<a class="button tiny" style="margin:0px;"  href="{{ path('r_heaven_ski_admin_calidation', { 'id': statut.id, 'type': 2 }) }}" >En attente</a>
+				<a class="button tiny success" style="margin:0px;"  href="{{ path('r_heaven_ski_admin_calidation', { 'id': statut.id, 'type': 3 }) }}" >Valider</a>
+				<a class="button tiny success" style="margin:0px;" href="{{ path('r_heaven_ski_admin_show', { 'id': statut.id }) }}">Consulter le dossier</a>
+				{% endif %}
+			</td>
+		</tr>
+		{% else %}
+			<td colspan="10" style="text-align: center;">Aucun dossier.</td>
+		{% endfor %}
+	</table>
+	
+	<script>
+		function dossierComplet() {
+			return confirm("Le dossier est-il complet ? \
+				\n\t - Dossier d'inscription imprimé \
+				\n\t - Paiement \
+				\n\t - Le chèque de caution de 100€ à l'ordre du BdE \
+				\n\t - Une photo d'identité (pour le forfait) \
+				\n\t - Une photocopie de ta pièce d'identité (recto/verso) \
+				\n\t - Une photocopie de ta carte vitale \
+				\n\t - Une photocopie de ta carte étudiante \
+			");
+		}
+	</script>
+{% endblock %}
