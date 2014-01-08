@@ -188,14 +188,16 @@
 							</tr>
 						</table>
 						
-						{% if paiement.modalites == '2' and (paiement.mode == 'Carte bancaire' or paiement.mode == 'Liquide') %}
-							Le paiement en 2 fois se fait seulement par chèque.
-						{% endif %}
-						
 						{% if app.user.statut == 'En cours' %}
 						<p class="text-center">
 							<a class="button small secondary" href="{{ path('r_heaven_ski_paiement') }}">Modifier mon moyen de paiement</a>
 						</p>
+						{% endif %}
+
+						{% if paiement.modalites == '2' and (paiement.mode == 'Carte bancaire' or paiement.mode == 'Liquide') %}
+						<div data-alert class="alert-box warning radius">
+							<span class="alert radius label">Attention</span> Le paiement en 2 fois se fait seulement par chèque.
+						</div>
 						{% endif %}
 					{% endif %}
 				</div>
@@ -213,8 +215,16 @@
 </div>
 
 
-{% if paiement.modalites == '2' and (paiement.mode == 'Carte bancaire' or paiement.mode == 'Liquide') %}
-	Problème sur les modalités de paiement. Veuillez rectifier pour terminer le dossier.
+{% if paiement is not null and paiement.modalites == '2' and (paiement.mode == 'Carte bancaire' or paiement.mode == 'Liquide') %}
+<div class="row">
+	<div class="large-12 columns">
+		<div class="callout panel">
+			<h3>Récapitulatif du voyage</h3>
+			<p><span class="alert radius label">Attention</span> Problème sur les modalités de paiement. Veuillez rectifier pour terminer le dossier.</p>
+		</div>
+	</div>
+</div>
+
 {% elseif options is not empty and paiement is not empty  %}
 <div class="row">
 	<div class="large7 columns">
@@ -297,29 +307,46 @@
 </div>
 
 {% if app.user.statut != 'En cours' %}
-	{% if app.user.statut == 'En attente' %}
-	Votre dossier est en cours de traitement.
-	{% elseif app.user.statut == 'Validé' %}
-	Félicitation, départ imminent pour le ski Hall 1, terminal EFREI le 22 février 2014.
-	{% elseif app.user.statut == 'Refusé' %}
-	Nous sommes dans le regret de vous informer que demande de participation au voyage au ski n'a pû être acceptée. <br/> Pour plus d'information, <a href="mailto:contact@r-heaven.fr">contact@r-heaven.fr</a>.
-	{% endif %}
+<div class="row">
+	<div class="large-12 columns">
+		<div class="callout panel">
+			<h3>Récapitulatif du voyage</h3>
+			{% if app.user.statut == 'En attente' %}
+			<div data-alert class="alert-box info radius">
+				<span class="radius label">Info</span> Votre dossier est en cours de traitement.
+			</div>
+			{% elseif app.user.statut == 'Validé' %}
+			<div data-alert class="alert-box success radius">
+				<span class="success radius label">Info</span> Félicitation, départ imminent pour le ski Hall 1, terminal EFREI le 22 février 2014 !<br /> Nous vous recontacterons par email pour vous donner les dernières informations.
+			</div>
+			{% elseif app.user.statut == 'Refusé' %}
+			<div data-alert class="alert-box warning radius">
+				<span class="alert radius label">Attention</span> Nous sommes dans le regret de vous informer que votre demande de participation au voyage au ski n'a pû être acceptée.
+			</div>
+			<p>Pour plus d'informations, contactez <a href="mailto:voyage@r-heaven.fr">voyage@r-heaven.fr</a>.</p>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
 {% else %}
+
 <div class="row">
 	<div class="large-12 columns">
 		<div class="panel">
 			<h3>Documents à fournir</h3>
 			<ul class="circle">
-				<li>Ton dossier d'inscription imprimé <em>(voir ci-dessous)</em></li>
+				<li>Ton dossier d'inscription imprimé et signé<em>(voir ci-dessous)</em></li>
+				<li>Le règlement imprimé et signé<em>(voir ci-dessous)</em></li>
 				<li>Ton paiement <em>(voir ci-dessus)</em></li>
 				<li>Un chèque de caution de 100€ à l'ordre du BDE Efrei</li>
 				<li>Une photo d'identité (pour le forfait)</li>
 				<li>Une photocopie de ta pièce d'identité (recto/verso)</li>
 				<li>Une photocopie de ta carte vitale</li>
-				<li>Une photocopie de ta carte étudiante</li>
+				<li>Une photocopie de ta carte étudiante à jour</li>
 			</ul>
-			<div data-alert class="alert-box warning radius">
-				<span class="alert radius label">Attention</span> Rapporte nous ton dossier sous 48h (jours ouvrés) au local BDE.
+			<div data-alert class="alert-box info radius">
+				<span class="info radius label">Info</span> Rapporte nous ton dossier sous 48h (jours ouvrés) au local BDE.
 			</div>
 		</div>
 	</div>
@@ -329,9 +356,7 @@
 		<div class="panel">
 			<h3>Imprimer mon dossier</h3>
 			<p class="text-center">
-				<input type="checkbox" /> J'accepte le réglement dans son intégralité disponible <a href="">à cette adresse</a>.
-			</p>
-			<p class="text-center">
+				<a href="{{ asset('docs/ReglementVoyageBDE.pdf') }}" class="button">Télécharger le règlement</a>
 				<a href="{{ path('r_heaven_ski_print_pdf') }}" class="button">Télécharger mon dossier en PDF</a>
 			</p>
 		</div>
@@ -343,7 +368,7 @@
 	<div class="large-12 columns">
 		<div class="callout panel">
 			<h3>Récapitulatif du voyage</h3>
-			<p><span class="alert radius label">Dossier incomplet</span></p>
+			<p><span class="alert radius label">Attention</span> Votre dossier est encore incomplet.</p>
 		</div>
 	</div>
 </div>

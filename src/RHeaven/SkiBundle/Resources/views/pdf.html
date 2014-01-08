@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>À la page</title>
+</head>
+<body>
+	<div style="float: left; padding-top: 60px;"><h2>Dossier d'inscription au ski avec R-Heaven</h2></div>
+	<div style="float: right;"><img src="logo-rheaven.png" style="width: 150px; height: 150px;"></div>
+	<div style="clear:both;"></div>
+
+	<div style="background-color: #CCC; color: #FFF; margin-top: 30px;">Mes informations</div>
+	<div>
+			
+		<table>
+			<tr>
+				<td>Nom : </td>
+				<td>{{ user.lastname|upper }}</td>
+			</tr>
+			<tr>
+				<td>Prénom : </td>
+				<td>{{ user.firstname }}</td>
+			</tr>
+			<tr>
+				<td>Promo : </td>
+				<td>{{ user.promo }}</td>
+			</tr>
+			<tr>
+				<td>Date de naissance : </td>
+				<td>{{ user.birthdate|date("d/m/Y") }}</td>
+			</tr>
+			<tr>
+				<td>Adresse : </td>
+				<td>{{ user.address }}<br/>{{ user.postalcode }} {{ user.city }}</td>
+			</tr>
+			<tr>
+				<td>Téléphone : </td>
+				<td>{{ user.phone }}</td>
+			</tr>
+			<tr>
+				<td>No de Sécu : </td>
+				<td>{{ user.ssNo }}</td>
+			</tr>
+			<tr>
+				<td>Problème de santé : </td>
+				<td>{{ user.santeProbleme }}</td>
+			</tr>
+			<tr>
+				<td>Traitement : </td>
+				<td>{{ user.santeTraitement }}</td>
+			</tr>
+			<tr>
+				<td>Personne à contacter en cas d'urgence : </td>
+				<td>{{ user.urgencePrenom1 }} {{ user.urgenceNom1|upper }} ({{ user.urgenceStatut1 }})<br/>{{ user.urgenceTel1 }}</td>
+			</tr>
+			{% if user.urgencePrenom2 is not null %}
+			<tr>
+				<td></td>
+				<td>{{ user.urgencePrenom2 }} {{ user.urgenceNom2|upper }} ({{ user.urgenceStatut2 }})<br/>{{ user.urgenceTel2 }}</td>
+			</tr>
+			{% endif %}
+			<tr>
+				<td>Poids : </td>
+				<td>{{ user.poids }}</td>
+			</tr>
+			<tr>
+				<td>Taille : </td>
+				<td>{{ user.taille }}</td>
+			</tr>
+			<tr>
+				<td>Pointure de chaussure : </td>
+				<td>{{ user.chaussure }}</td>
+			</tr>
+		</table>
+
+	</div>
+	
+	
+	<div style="background-color: #CCC; color: #FFF;">Récapitulatif de mon voyage</div>
+	<div>
+	
+		<table>
+			<tr>
+				<td>Base du voyage : </td>
+				<td>460€</td>
+			</tr>
+			{% if options.materiel.price != 0 %}
+			<tr>
+				<td>{{ options.materiel.name }} : </td>
+				<td style="text-align: right;">{{ options.materiel.price }}€</td>
+			</tr>
+			{% endif %}
+			
+			<tr>
+				<td>Assurance matériel : </td>
+				<td style="text-align: right;">{% if options.assuranceMateriel == 1 %}12€{% else %} -{% endif %}</td>
+			</tr>
+			
+			
+			<tr>
+				<td>Assurance neige : </td>
+				<td style="text-align: right;">{% if options.assuranceNeige == 1 %}17€{% else %} -{% endif %}</td>
+			</tr>
+			
+			
+			<tr>
+				<td>Assurance voyage : </td>
+				<td style="text-align: right;">{% if options.assuranceVoyage == 1 %}11€{% else %} -{% endif %}</td>
+			</tr>
+			
+			
+			<tr>
+				<td>Assurance risque : </td>
+				<td style="text-align: right;">{% if options.assuranceRisque == 1 %}20€{% else %} -{% endif %}</td>
+			</tr>
+			
+			
+			<tr>
+				<td>Extension Kelly : </td>
+				<td style="text-align: right;">{% if options.optionKelly == 1 %}40€{% else %} -{% endif %}</td>
+			</tr>
+			
+			
+			<tr>
+				<td>Option nourriture : </td>
+				<td style="text-align: right;">{% if options.optionFood == 1 %}50€{% else %} -{% endif %}</td>
+			</tr>
+			
+			<tr>
+				<td>Total du voyage : </td>
+				<td style="text-align: right;">{{ total }}€</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div style="background-color: #CCC; color: #FFF;">Paiement</div>
+	<div>
+				
+		{% if paiement.modalites == 1 %}
+		<p> Le paiement des {{ total }}€ est à effectuer en une seule fois par {{ paiement.mode }} dès l'inscription. </p>
+		{% else %} 
+		<p> Le paiement des {{ total }}€ est à effectuer en deux fois par {{ paiement.mode|lower }} : </p>
+		<ul>
+			<li>50% à l'inscription, soit {{ total/2 }}€</li>
+			<li>50% le vendredi 14 février 2014, soit {{ total/2 }}€</li>
+		</ul>
+		{% endif %}
+
+		{% if paiement.mode == 'Chèque' %}
+			<p>Le chèque doit être fait à l'ordre de "BdE Efrei".</p>
+		{% endif %}
+
+	</div>
+	
+	
+	<div style="background-color: #CCC; color: #FFF;">Documents à fournir</div>
+	<div>
+		<ul style="list-style-type:none; padding:0;">
+			<li><input type="checkbox" /> Ton dossier d'inscription imprimé et signé</li>
+			<li><input type="checkbox" /> Le règlement imprimé et signé</li>
+			<li><input type="checkbox" /> Ton paiement</li>
+			<li><input type="checkbox" /> Un chèque de caution de 100€ à l'ordre du BDE</li>
+			<li><input type="checkbox" /> Une photo d'identité (pour le forfait)</li>
+			<li><input type="checkbox" /> Une photocopie de ta pièce d'identité (recto/verso)</li>
+			<li><input type="checkbox" /> Une photocopie de ta carte vitale</li>
+			<li><input type="checkbox" /> Une photocopie de ta carte étudiante mise à jour</li>
+		</ul>
+	</div>
+	 <p> <input type="checkbox" checked="checked"/> En m'inscrivant, je certifie avoir pris connaissance du règlement et en accepte tous les termes.</p>
+
+	<table>
+		<tr>
+			<td>Fait le ________________________________________</td>
+			<td style="width: 100px;"></td>
+			<td>Signature</td>
+		</tr>
+		<tr>
+			
+			<td>A		________________________________________</td>
+			<td></td>
+			<td style="border: 1px solid #000; height: 60px; width: 300px;"></td>
+		</tr>
+	</table>
+	</body>
+</html>
