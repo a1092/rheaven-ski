@@ -1,10 +1,13 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
     <h1>Inscriptions</h1>
 	
 	<h2>En cours</h2>
-	<table>
+	<table style="width: 100%;">
 		<tr>
 			<th>#</th>
 			<th>Nom</th>
@@ -41,7 +44,7 @@
 		{% endfor %}
 	</table>
 	<h2>En attente de validation</h2>
-	<table>
+	<table style="width: 100%;">
 		<tr>
 			<th>#</th>
 			<th>Nom</th>
@@ -79,7 +82,7 @@
 		{% endfor %}
 	</table>
 	<h2>Validée</h2>
-	<table>
+	<table style="width: 100%;">
 		<tr>
 			<th>#</th>
 			<th>Nom</th>
@@ -117,7 +120,7 @@
 		{% endfor %}
 	</table>
 	<h2>Refusée</h2>
-	<table>
+	<table style="width: 100%;">
 		<tr>
 			<th>#</th>
 			<th>Nom</th>
@@ -154,7 +157,9 @@
 			<td colspan="10" style="text-align: center;">Aucun dossier.</td>
 		{% endfor %}
 	</table>
-	
+		</div>
+	</div>
+</div>
 	<script>
 		function dossierComplet() {
 			return confirm("Le dossier est-il complet ? \

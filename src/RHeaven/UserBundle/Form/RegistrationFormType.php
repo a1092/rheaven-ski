@@ -104,6 +104,7 @@ class RegistrationFormType extends BaseType
 					'required' => true,
 					'read_only' => true
 				))
+				
 		;
     }
 

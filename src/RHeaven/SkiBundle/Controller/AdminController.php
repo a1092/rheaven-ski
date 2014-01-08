@@ -53,12 +53,16 @@ class AdminController extends Controller
 		
 		if($type == 1) {
 			$dossier->setStatut("En cours");
+			
 		} else if($type == 2) {
 			$dossier->setStatut("En attente");
+			$dossier->setDateReception(new \DateTime());
 		} else if($type == 3) {
 			$dossier->setStatut("Validé");
+			$dossier->setDateDecision(new \DateTime());
 		} else if($type == 4) {
 			$dossier->setStatut("Refusé");
+			$dossier->setDateDecision(new \DateTime());
 		} else {
 			throw new NotFoundHttpException("Statut de validation inconnu.");
 		}

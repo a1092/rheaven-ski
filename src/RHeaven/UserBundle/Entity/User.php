@@ -158,6 +158,24 @@ class User extends BaseUser
 	*/
 	private $options;
 	
+	/**
+	* @ORM\Column(name="date_inscription", type="datetime", nullable=true)
+	*/
+	private $date_inscription;
+	
+	/**
+	* @ORM\Column(name="date_reception", type="datetime", nullable=true)
+	*/
+	private $date_reception;
+	
+	/**
+	* @ORM\Column(name="date_decision", type="datetime", nullable=true)
+	*/
+	private $date_decision;
+
+	
+
+	
     /**
      * Get id
      *
@@ -747,5 +765,74 @@ class User extends BaseUser
     public function getChaussure()
     {
         return $this->chaussure;
+    }
+
+    /**
+     * Set date_decision
+     *
+     * @param \DateTime $dateDecision
+     * @return User
+     */
+    public function setDateDecision($dateDecision)
+    {
+        $this->date_decision = $dateDecision;
+
+        return $this;
+    }
+
+    /**
+     * Get date_decision
+     *
+     * @return \DateTime 
+     */
+    public function getDateDecision()
+    {
+        return $this->date_decision;
+    }
+
+    /**
+     * Set date_reception
+     *
+     * @param \DateTime $dateReception
+     * @return User
+     */
+    public function setDateReception($dateReception)
+    {
+        $this->date_reception = $dateReception;
+
+        return $this;
+    }
+
+    /**
+     * Get date_reception
+     *
+     * @return \DateTime 
+     */
+    public function getDateReception()
+    {
+        return $this->date_reception;
+    }
+
+    /**
+     * Set date_inscription
+     *
+     * @param \DateTime $dateInscription
+     * @return User
+     */
+    public function setDateInscription($dateInscription)
+    {
+        $this->date_inscription = $dateInscription;
+
+        return $this;
+    }
+
+    /**
+     * Get date_inscription
+     *
+     * @return \DateTime 
+     */
+    public function getDateInscription()
+    {
+        return $this->date_inscription;
     }
 }
