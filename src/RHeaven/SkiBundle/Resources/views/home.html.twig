@@ -133,7 +133,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Extension <a href="http://www.espacekilly.com">Espace Killy</a> : </td>
+						<td>Extension forfait <a href="http://www.espacekilly.com">Espace Killy</a></td>
 						<td>
 							{% if options.optionKelly == 1 %}
 								<span class="success radius label">Oui</span>
@@ -245,7 +245,7 @@
 					{% endif %}
 					{% if options.optionKelly == 1 %}
 					<tr>
-						<td>Extension <a href="http://www.espacekilly.com">Espace Killy</a></td>
+						<td>Extension forfait <a href="http://www.espacekilly.com">Espace Killy</a></td>
 						<td>40€</td>
 					</tr>
 					{% endif %}
@@ -294,8 +294,8 @@
 				<li>Une photocopie de ta carte vitale</li>
 				<li>Une photocopie de ta carte étudiante</li>
 			</ul>
-			<div data-alert class="alert-box info radius">
-				<span class="radius label">Info</span> Pense à nous signaler avec qui tu veux être dans le logement (studio de 4 personnes : 1 lit double / 1 lit superposé).
+			<div data-alert class="alert-box warning radius">
+				<span class="alert radius label">Attention</span> Rapporte nous ton dossier sous 48h (jours ouvrés) au local BDE.
 			</div>
 		</div>
 	</div>
@@ -310,9 +310,6 @@
 			<p class="text-center">
 				<a href="{{ path('r_heaven_ski_print_pdf') }}" class="button">Télécharger mon dossier en PDF</a>
 			</p>
-			<div data-alert class="alert-box warning radius">
-				<span class="alert radius label">Attention</span> Rapporte nous ton dossier sous 48h (jours ouvrés) au local BDE.
-			</div>
 		</div>
 	</div>
 </div>

@@ -11,18 +11,20 @@
 </head>
 <body>
 
+    {% if app.user %}
     <div class="fixed">
         <nav class="top-bar" data-topbar data-options="is_hover: false">
             <section class="top-bar-section">
                 <!-- Right Nav Section -->
                 <ul class="right">
+                    {% if is_granted("ROLE_USER") %}
                     <li>
                         <a href="{{ path('r_heaven_ski_homepage') }}">
                         Dossier :  
                         {% if app.user.statut == 'Refusé' %}
                         <span class="label radius alert">
                         {% elseif app.user.statut == 'Validé' %}
-                        <span class="label radius sucess">
+                        <span class="label radius success">
                         {% elseif app.user.statut == 'En attente' %}
                         <span class="label radius">
                         {% else %} 
@@ -31,16 +33,18 @@
                         {{ app.user.statut }}</span></a>
                     </li>
                     <li class="divider"></li>
+                    {% endif %}
                     <li class="has-form">
                         <a href="{{ path('fos_user_security_logout') }}" class="button radius alert">Se déconnecter</a>
                     </li>
+                    
                 </ul>
 
                 <!-- Left Nav Section -->
                 <ul class="left">
-                    <li><a href="{{ path('r_heaven_ski_index') }}">Compte : {{ app.user.email }}</a></li>
+                    <li><a href="{{ path('r_heaven_ski_index') }}">{{ app.user.firstname }} {{ app.user.lastname }}  <span class="label radius">{{ app.user.email }}</span></a></li>
                     <li class="divider"></li>
-                    {% if is_granted("USER_ADMIN") %}
+                    {% if is_granted("ROLE_ADMIN") %}
                     <li class="divider"></li>
                     <li><a href="{{ path('r_heaven_ski_admin') }}" class="button radius alert">Gestion des inscriptions</a></li>
                     {% endif %}
@@ -48,6 +52,7 @@
             </section>
         </nav>
     </div>
+    {% endif %}
 
     <header class="row">
         <a href=""><img src="{{ asset('img/header-ski.png') }}" alt="R-Heaven - Voyage au ski" /></a>
